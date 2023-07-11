@@ -1,5 +1,5 @@
 import { I18nProvider } from "react-aria";
-import { Editor } from "./components/editor";
+import { Editor } from "./components/editor-field";
 
 function App() {
   return (
