@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: 255 255 255;
+    --color-foreground: 0 0 0;
+    --color-foreground-muted: 0 0 0;
+
+    --color-primary: 227 6 19;
+    --color-primary-foreground: 255 255 255;
+
+    --color-secondary: 0 0 0;
+    --color-secondary-foreground: 255 255 255;
+
+    --color-input: 243 244 246;
+    --color-input-foreground: 55 65 81;
+
+    --color-border: 209 213 219;
+    --color-border-vivid: 0 0 0;
+
+    --color-accent: 0 0 0;
+    --color-card: 249 250 251;
+    --color-ring: 0 0 0;
+  }
+}
