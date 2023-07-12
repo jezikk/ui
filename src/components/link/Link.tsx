@@ -16,5 +16,5 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
     const ref = useObjectRef(forwardedRef);
     const { linkProps } = useLink(props, ref);
     return <a {...linkProps} ref={ref} className={cn("", className)} />;
-  },
+  }
 );

@@ -16,5 +16,5 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {props.children}
       </button>
     );
-  },
+  }
 );
