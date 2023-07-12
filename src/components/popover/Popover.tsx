@@ -18,12 +18,12 @@ interface PopoverProps extends Omit<AriaPopoverProps, "popoverRef"> {
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   function Popover(
     { className, state, offset = 8, children, ...props },
-    forwardedRef,
+    forwardedRef
   ) {
     const popoverRef = useObjectRef(forwardedRef);
     const { popoverProps, underlayProps } = usePopover(
       { ...props, popoverRef, offset },
-      state,
+      state
     );
     return (
       <Overlay>
@@ -35,5 +35,5 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         </div>
       </Overlay>
     );
-  },
+  }
 );

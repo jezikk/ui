@@ -1,5 +1,9 @@
 /** @type {import("prettier").Options} */
 
 module.exports = {
-  plugins: ['prettier-plugin-tailwindcss'],
+  importOrderTypeScriptVersion: "5.0.0",
+  plugins: [
+    "prettier-plugin-tailwindcss",
+    "@ianvs/prettier-plugin-sort-imports",
+  ],
 };

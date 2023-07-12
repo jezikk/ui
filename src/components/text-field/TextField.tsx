@@ -1,9 +1,9 @@
 import { useObjectRef } from "@/hooks";
 import React from "react";
 import { AriaTextFieldProps, useTextField } from "react-aria";
-import { Label } from "../label";
 import { DescriptionMessage } from "../description-message";
 import { ErrorMessage } from "../error-message";
+import { Label } from "../label";
 
 interface TextFieldProps extends AriaTextFieldProps {
   className?: string;
@@ -26,5 +26,5 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         </ErrorMessage>
       </div>
     );
-  },
+  }
 );
