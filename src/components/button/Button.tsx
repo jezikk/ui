@@ -1,20 +1,52 @@
-import { useObjectRef } from "@/hooks";
 import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
 import React from "react";
-import { AriaButtonProps, useButton } from "react-aria";
+import { UnstyledButton, UnstyledButtonProps } from "./UnstyledButton";
 
-export interface ButtonProps extends AriaButtonProps<"button"> {
+const buttonVariants = cva(
+  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        outline:
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+      },
+      size: {
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icon: "h-9 w-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface ButtonProps
+  extends UnstyledButtonProps,
+    VariantProps<typeof buttonVariants> {
   className?: string;
+  children: React.ReactNode;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button({ className, ...props }, forwardedRef) {
-    const buttonRef = useObjectRef(forwardedRef);
-    const { buttonProps } = useButton(props, buttonRef);
+  function Button({ className, variant, size, ...props }, forwardedRef) {
     return (
-      <button {...buttonProps} ref={buttonRef} className={cn(className)}>
+      <UnstyledButton
+        {...props}
+        ref={forwardedRef}
+        className={cn(buttonVariants({ variant, size, className }))}
+      >
         {props.children}
-      </button>
+      </UnstyledButton>
     );
   }
 );

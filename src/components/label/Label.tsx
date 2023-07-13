@@ -1,19 +1,29 @@
 import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
 import { LabelAriaProps } from "react-aria";
 
-interface LabelProps extends LabelAriaProps {
+const labelVariants = cva(
+  "block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+);
+
+interface LabelProps
+  extends LabelAriaProps,
+    VariantProps<typeof labelVariants> {
   className?: string;
   isRequired?: boolean;
+  children?: React.ReactNode;
 }
 
-export function Label({ className, label, isRequired, ...props }: LabelProps) {
-  if (!label) return null;
+export function Label({
+  className,
+  isRequired,
+  children,
+  ...props
+}: LabelProps) {
+  if (!children) return null;
   return (
-    <label
-      {...props}
-      className={cn("whitespace-nowrap text-sm font-medium", className)}
-    >
-      {label}
+    <label {...props} className={cn(labelVariants({ className }))}>
+      {children}
       {isRequired && (
         <span className="ml-0.5" aria-hidden={true}>
           *

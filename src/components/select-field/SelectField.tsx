@@ -1,17 +1,19 @@
-import { useObjectRef } from "@/hooks";
+import { useObjectRef } from "@react-aria/utils";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import React from "react";
-import { useSelect, AriaSelectProps, HiddenSelect } from "react-aria";
-import { useSelectState } from "react-stately";
-import { Label } from "../label";
-import { Button } from "../button";
-import { Popover } from "../popover";
-import { ListBox } from "./Listbox";
+import { AriaSelectProps, HiddenSelect, useSelect } from "react-aria";
+import { Item, useSelectState } from "react-stately";
+import { UnstyledButton } from "../button";
 import { DescriptionMessage } from "../description-message";
 import { ErrorMessage } from "../error-message";
+import { Label } from "../label";
+import { Popover } from "../popover";
+import { ListBox } from "./Listbox";
+import { cn } from "@/lib/utils";
 
 interface SelectFieldProps<TItem> extends AriaSelectProps<TItem> {
   className?: string;
-  children: React.ReactElement | ((item: TItem) => React.ReactElement);
+  children: React.ReactElement[] | ((item: TItem) => React.ReactElement);
 }
 
 function SelectField<TItem extends object>(
@@ -31,7 +33,9 @@ function SelectField<TItem extends object>(
 
   return (
     <div className={props.className}>
-      <Label {...labelProps} className="mb-1" />
+      <Label {...labelProps} isRequired={props.isRequired} className="mb-1.5">
+        {props.label}
+      </Label>
 
       <HiddenSelect
         isDisabled={props.isDisabled}
@@ -41,18 +45,33 @@ function SelectField<TItem extends object>(
         name={props.name}
       />
 
-      <Button {...triggerProps} ref={triggerRef}>
-        <span {...valueProps}>
+      <UnstyledButton
+        {...triggerProps}
+        ref={triggerRef}
+        className="flex h-9 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm text-input-foreground shadow-sm focus:border-border-vivid focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        <span
+          {...valueProps}
+          className={cn(!state.selectedItem && "text-foreground-muted")}
+        >
           {state.selectedItem ? state.selectedItem.rendered : props.placeholder}
         </span>
-        <span aria-hidden="true" style={{ paddingLeft: 5 }}>
-          ▼
-        </span>
-      </Button>
+        {!props.isDisabled && (
+          <ChevronDownIcon
+            className="h-4 w-4 text-foreground"
+            aria-hidden="true"
+          />
+        )}
+      </UnstyledButton>
 
       {state.isOpen && (
-        <Popover state={state} triggerRef={triggerRef} placement="bottom start">
-          <ListBox {...menuProps} state={state}>
+        <Popover
+          state={state}
+          triggerRef={triggerRef}
+          placement="bottom start"
+          className="overflow-hidden rounded-md border border-border bg-background p-1 text-foreground shadow-md"
+        >
+          <ListBox {...menuProps} state={state} className="outline-none">
             {props.children}
           </ListBox>
         </Popover>
@@ -75,4 +94,4 @@ type SelectFieldWithRef = <TItem>(
 ) => React.ReactElement;
 
 const _SelectField = React.forwardRef(SelectField) as SelectFieldWithRef;
-export { _SelectField as SelectField };
+export { _SelectField as SelectField, Item as SelectItem };

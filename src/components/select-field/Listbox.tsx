@@ -1,4 +1,4 @@
-import { useObjectRef } from "@/hooks";
+import { useObjectRef } from "@react-aria/utils";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { AriaListBoxProps, useListBox } from "react-aria";
@@ -16,6 +16,7 @@ function ListBox<TItem>(
 ) {
   const ref = useObjectRef(forwarderRef);
   const { listBoxProps } = useListBox(props, state, ref);
+
   return (
     <ul {...listBoxProps} ref={ref} className={cn("", className)}>
       {[...state.collection].map((item) => (

@@ -1,10 +1,10 @@
 import { I18nProvider } from "react-aria";
-import { Editor } from "./components/editor-field";
+import { Demo } from "./Demo";
 
 function App() {
   return (
     <I18nProvider>
-      <Editor />
+      <Demo />
     </I18nProvider>
   );
 }

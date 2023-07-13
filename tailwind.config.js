@@ -20,6 +20,8 @@ export default {
         border: "rgb(var(--color-border) / <alpha-value>)",
         "border-vivid": "rgb(var(--color-border-vivid) / <alpha-value>)",
         accent: "rgb(var(--color-accent) / <alpha-value>)",
+        "accent-foreground":
+          "rgb(var(--color-accent-foreground) / <alpha-value>)",
         card: "rgb(var(--color-card) / <alpha-value>)",
         ring: "rgb(var(--color-ring) / <alpha-value>)",
         input: "rgb(var(--color-input) / <alpha-value>)",

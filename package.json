@@ -11,6 +11,8 @@
     "check": "tsc"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
+    "@react-aria/utils": "^3.18.0",
     "@udecode/plate-basic-marks": "^22.0.1",
     "@udecode/plate-common": "^22.0.1",
     "@udecode/plate-heading": "^22.0.1",
