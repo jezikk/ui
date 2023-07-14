@@ -22,7 +22,7 @@ export function Option<TItem>({ item, state, ...props }: OptionProps<TItem>) {
       {...optionProps}
       ref={ref}
       className={cn(
-        "flex items-center justify-between gap-x-2 rounded-md px-2 py-1.5 text-sm outline-none transition-colors",
+        "flex items-center justify-between gap-x-2 rounded-md px-2 py-1.5 text-sm outline-none",
         isSelected && "font-semibold",
         isFocused && "bg-accent text-accent-foreground"
       )}

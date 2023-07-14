@@ -1,6 +1,6 @@
 import { useObjectRef } from "@react-aria/utils";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import React from "react";
+import React, { useRef } from "react";
 import { AriaSelectProps, HiddenSelect, useSelect } from "react-aria";
 import { Item, useSelectState } from "react-stately";
 import { UnstyledButton } from "../button";
@@ -10,6 +10,7 @@ import { Label } from "../label";
 import { Popover } from "../popover";
 import { ListBox } from "./Listbox";
 import { cn } from "@/lib/utils";
+import { useWidthObserver } from "@/hooks/useWidthObserver";
 
 interface SelectFieldProps<TItem> extends AriaSelectProps<TItem> {
   className?: string;
@@ -21,6 +22,8 @@ function SelectField<TItem extends object>(
   forwardedRef: React.ForwardedRef<HTMLButtonElement>
 ) {
   const triggerRef = useObjectRef(forwardedRef);
+  const popoverRef = useRef<HTMLDivElement>(null);
+
   const state = useSelectState(props);
   const {
     labelProps,
@@ -30,6 +33,12 @@ function SelectField<TItem extends object>(
     errorMessageProps,
     descriptionProps,
   } = useSelect(props, state, triggerRef);
+
+  useWidthObserver(triggerRef, (width) => {
+    if (popoverRef.current) {
+      popoverRef.current.style.minWidth = width;
+    }
+  });
 
   return (
     <div className={props.className}>
@@ -66,12 +75,17 @@ function SelectField<TItem extends object>(
 
       {state.isOpen && (
         <Popover
+          ref={popoverRef}
           state={state}
           triggerRef={triggerRef}
           placement="bottom start"
-          className="overflow-hidden rounded-md border border-border bg-background p-1 text-foreground shadow-md"
+          className="overflow-hidden rounded-md border border-border bg-background text-foreground shadow-md"
         >
-          <ListBox {...menuProps} state={state} className="outline-none">
+          <ListBox
+            {...menuProps}
+            state={state}
+            className="max-h-72 overflow-auto p-1 outline-none"
+          >
             {props.children}
           </ListBox>
         </Popover>
