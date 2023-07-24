@@ -3,7 +3,7 @@ import { Demo } from "./Demo";
 
 function App() {
   return (
-    <I18nProvider>
+    <I18nProvider locale="cs-CZ">
       <Demo />
     </I18nProvider>
   );

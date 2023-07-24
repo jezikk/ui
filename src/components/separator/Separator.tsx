@@ -1,7 +1,20 @@
-import { cn } from "@/lib/utils";
-import { SeparatorProps, useSeparator } from "react-aria";
+import {
+  SeparatorProps as RASeparatorProps,
+  Separator as RASeparator,
+} from "react-aria-components";
+import { tv } from "tailwind-variants";
 
-interface Props extends SeparatorProps {
+const separatorVariants = tv({
+  base: "bg-border",
+  variants: {
+    orientation: {
+      vertical: "mx-1 h-full w-[1px]",
+      horizontal: "my-1 h-[1px] w-full",
+    },
+  },
+});
+
+interface SeparatorProps extends RASeparatorProps {
   className?: string;
 }
 
@@ -9,18 +22,12 @@ export function Separator({
   className,
   orientation = "vertical",
   ...props
-}: Props) {
-  const { separatorProps } = useSeparator({ ...props, orientation });
+}: SeparatorProps) {
   return (
-    <div
-      {...separatorProps}
-      className={cn(
-        "bg-gray-600",
-        orientation === "vertical"
-          ? "mx-1 h-full w-[1px]"
-          : "my-1 h-[1px] w-full",
-        className
-      )}
+    <RASeparator
+      {...props}
+      orientation={orientation}
+      className={separatorVariants({ orientation, className })}
     />
   );
 }

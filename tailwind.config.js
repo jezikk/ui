@@ -23,6 +23,8 @@ export default {
         "accent-foreground":
           "rgb(var(--color-accent-foreground) / <alpha-value>)",
         card: "rgb(var(--color-card) / <alpha-value>)",
+        "card-foreground":
+          "rgb(var(--color-card-foreground) / <alpha-value>)",
         ring: "rgb(var(--color-ring) / <alpha-value>)",
         input: "rgb(var(--color-input) / <alpha-value>)",
         "input-foreground":

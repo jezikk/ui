@@ -24,6 +24,8 @@
     --color-accent-foreground: var(--color-primary-foreground);
 
     --color-card: var(--color-background);
+    --color-card-foreground: var(--color-foreground);
+
     --color-ring: 186 230 253;
   }
 }

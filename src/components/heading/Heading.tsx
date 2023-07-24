@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
-import { VariantProps, cva } from "class-variance-authority";
+import { VariantProps, tv } from "tailwind-variants";
 
-const headingVariants = cva("scroll-m-20", {
+const headingVariants = tv({
+  base: "scroll-m-20",
   variants: {
     variant: {
       h1: "text-4xl font-extrabold tracking-tight lg:text-5xl",
@@ -26,9 +26,6 @@ export function Heading({ variant, className, as, ...props }: HeadingProps) {
   const Element = as ? as : variant!;
 
   return (
-    <Element
-      {...props}
-      className={cn(headingVariants({ variant }), className)}
-    />
+    <Element {...props} className={headingVariants({ variant, className })} />
   );
 }

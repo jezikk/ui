@@ -1,5 +1,4 @@
 import { useObjectRef } from "@react-aria/utils";
-import { cn } from "@/lib/utils";
 import React from "react";
 import { AriaListBoxProps, useListBox } from "react-aria";
 import { ListState } from "react-stately";
@@ -8,19 +7,20 @@ import { Option } from "./Option";
 interface ListBoxProps<TItem> extends AriaListBoxProps<TItem> {
   className?: string;
   state: ListState<TItem>;
+  onClose?: () => void;
 }
 
 function ListBox<TItem>(
-  { className, state, ...props }: ListBoxProps<TItem>,
-  forwarderRef: React.ForwardedRef<HTMLUListElement>
+  { className, state, onClose, ...props }: ListBoxProps<TItem>,
+  forwarderRef: React.ForwardedRef<HTMLUListElement>,
 ) {
   const ref = useObjectRef(forwarderRef);
   const { listBoxProps } = useListBox(props, state, ref);
 
   return (
-    <ul {...listBoxProps} ref={ref} className={cn("", className)}>
+    <ul {...listBoxProps} ref={ref} className={className}>
       {[...state.collection].map((item) => (
-        <Option key={item.key} item={item} state={state} />
+        <Option key={item.key} item={item} state={state} onClose={onClose} />
       ))}
     </ul>
   );
@@ -28,7 +28,7 @@ function ListBox<TItem>(
 
 type ListBoxWithRef = <TItem>(
   props: ListBoxProps<TItem>,
-  ref: React.Ref<HTMLUListElement>
+  ref: React.Ref<HTMLUListElement>,
 ) => React.ReactElement;
 
 const _ListBox = React.forwardRef(ListBox) as ListBoxWithRef;

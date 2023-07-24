@@ -1,7 +1,6 @@
-import { cn } from "@/lib/utils";
-import { VariantProps, cva } from "class-variance-authority";
+import { VariantProps, tv } from "tailwind-variants";
 
-const paragraphVariant = cva("", {
+const paragraphVariant = tv({
   variants: {
     variant: {
       default: "leading-7",
@@ -20,5 +19,5 @@ interface ParagraphProps
 }
 
 export function Paragraph({ className, ...props }: ParagraphProps) {
-  return <p {...props} className={cn(paragraphVariant({ className }))} />;
+  return <p {...props} className={paragraphVariant({ className })} />;
 }
