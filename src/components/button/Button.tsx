@@ -13,7 +13,7 @@ const buttonVariants = tv({
       secondary:
         "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
       outline:
-        "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        "border border-border bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
       ghost: "hover:bg-accent hover:text-accent-foreground",
     },
     size: {
@@ -46,5 +46,5 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {props.children}
       </RAButton>
     );
-  }
+  },
 );

@@ -1,10 +1,12 @@
 import { useObjectRef } from "@react-aria/utils";
 import React from "react";
-import { AriaListBoxProps, useListBox } from "react-aria";
+import { AriaListBoxOptions, AriaListBoxProps, useListBox } from "react-aria";
 import { ListState } from "react-stately";
 import { Option } from "./Option";
 
-interface ListBoxProps<TItem> extends AriaListBoxProps<TItem> {
+interface ListBoxProps<TItem>
+  extends AriaListBoxOptions<TItem>,
+    Pick<AriaListBoxProps<TItem>, "children"> {
   className?: string;
   state: ListState<TItem>;
   onClose?: () => void;

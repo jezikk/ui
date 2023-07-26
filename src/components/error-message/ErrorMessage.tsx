@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { Text, TextProps } from "react-aria-components";
 
 interface Props extends TextProps {
@@ -5,10 +6,14 @@ interface Props extends TextProps {
   className?: string;
 }
 
-export function ErrorMessage(props: Props) {
+export function ErrorMessage({ className, ...props }: Props) {
   if (!props.children) return null;
   return (
-    <Text slot="errorMessage" {...props}>
+    <Text
+      slot="errorMessage"
+      {...props}
+      className={cn("text-sm text-error-600", className)}
+    >
       {props.children}
     </Text>
   );

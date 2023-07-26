@@ -31,7 +31,7 @@ export function Tab({ className, ...props }: TabProps) {
     <RATab
       {...props}
       className={cn(
-        "cursor-pointer rounded-md text-sm font-medium text-foreground-muted outline-none transition-all hover:text-foreground aria-disabled:cursor-default aria-disabled:opacity-50 aria-selected:text-foreground data-[focus-visible]:ring-2 data-[focus-visible]:ring-ring",
+        "cursor-pointer rounded-md text-sm font-medium text-muted-foreground outline-none transition-all hover:text-foreground aria-disabled:cursor-default aria-disabled:opacity-50 aria-selected:text-foreground data-[focus-visible]:ring-2 data-[focus-visible]:ring-ring",
         className,
       )}
     />

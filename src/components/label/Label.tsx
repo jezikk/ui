@@ -25,7 +25,7 @@ export function Label({
     <RALabel {...props} className={labelVariants({ className })}>
       {children}
       {isRequired && (
-        <span className="ml-0.5" aria-hidden={true}>
+        <span className="ml-0.5 text-error-600" aria-hidden={true}>
           *
         </span>
       )}

@@ -1,5 +1,5 @@
 export type FieldProps = {
-  label?: string;
-  description?: string;
-  errorMessage?: string;
+  label?: React.ReactNode;
+  description?: React.ReactNode;
+  errorMessage?: React.ReactNode;
 };

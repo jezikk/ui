@@ -11,6 +11,7 @@ import {
   MultiSelectField,
   MultiSelectItem,
 } from "./components/multiselect-field";
+import { Link } from "./components/link";
 
 export function Demo() {
   return (
@@ -25,56 +26,269 @@ export function Demo() {
             </TabList>
           </CardHeader>
           <CardContent>
-            <TabPanel id="typography">
-              <Heading variant="h1">Buttons</Heading>
-              <Paragraph>This section describes variants of buttons</Paragraph>
+            <TabPanel id="typography" className="max-w-3xl space-y-8">
+              <Heading variant="h1">Heading 1</Heading>
+              <Heading variant="h2">Heading 2</Heading>
+              <Heading variant="h3">Heading 3</Heading>
+              <Heading variant="h4">Heading 4</Heading>
+              <Paragraph>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis
+                ante orci, molestie vitae vehicula venenatis, tincidunt ac pede.
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                Integer lacinia. Cras pede libero, dapibus nec, pretium sit
+                amet, <Link href="#">tempor quis</Link>.
+              </Paragraph>
+              <Paragraph variant="muted">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis
+                ante orci, molestie vitae vehicula venenatis, tincidunt ac pede.
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                Integer lacinia. Cras pede libero, dapibus nec, pretium sit
+                amet, <Link href="#">tempor quis</Link>.
+              </Paragraph>
             </TabPanel>
 
-            <TabPanel id="buttons">
-              <Heading variant="h1">Buttons</Heading>
-              <Paragraph>This section describes variants of buttons</Paragraph>
-              <div className="mt-4 flex items-center gap-4">
-                <Button>Primarty</Button>
-                <Button variant="secondary">Secondary</Button>
-                <Button size="icon" aria-label="Send">
-                  <EnvelopeIcon className="h-5 w-5" aria-hidden={true} />
-                </Button>
+            <TabPanel id="buttons" className="space-y-8">
+              <div>
+                <Heading variant="h3">Primary</Heading>
+                <div className="mt-4 flex items-center gap-4">
+                  <Button>Enabled</Button>
+                  <Button isDisabled>Disabled</Button>
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Secondary</Heading>
+                <div className="mt-4 flex items-center gap-4">
+                  <Button variant="secondary">Enabled</Button>
+                  <Button variant="secondary" isDisabled>
+                    Disabled
+                  </Button>
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Outline</Heading>
+                <div className="mt-4 flex items-center gap-4">
+                  <Button variant="outline">Enabled</Button>
+                  <Button variant="outline" isDisabled>
+                    Disabled
+                  </Button>
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Ghost</Heading>
+                <div className="mt-4 flex items-center gap-4">
+                  <Button variant="ghost">Enabled</Button>
+                  <Button variant="ghost" isDisabled>
+                    Disabled
+                  </Button>
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Sizes</Heading>
+                <div className="mt-4 flex items-center gap-4">
+                  <Button size="sm">Small</Button>
+                  <Button>Default</Button>
+                  <Button size="lg">Large</Button>
+                  <Button size="icon" aria-label="Send">
+                    <EnvelopeIcon className="h-5 w-5" aria-hidden={true} />
+                  </Button>
+                  <Button
+                    size="icon"
+                    aria-label="Send"
+                    className="rounded-full"
+                  >
+                    <EnvelopeIcon className="h-5 w-5" aria-hidden={true} />
+                  </Button>
+                </div>
               </div>
             </TabPanel>
 
-            <TabPanel id="form">
-              <Heading as="h1" variant="h2">
-                Inputs
-              </Heading>
-              <Paragraph>
-                This section describes variants of input fields
-              </Paragraph>
-              <div className="mt-4 flex max-w-xs flex-col gap-8">
-                <TextField
-                  label="Paragraph field"
-                  isRequired={true}
-                  defaultValue="Hodnota"
-                />
-                <NumberField
-                  label="Number field"
-                  isRequired={true}
-                  defaultValue={1000}
-                  formatOptions={{ style: "currency", currency: "CZK" }}
-                />
-                <SelectField label="Select field" placeholder="Select an item">
-                  <SelectItem>Red</SelectItem>
-                  <SelectItem>Green</SelectItem>
-                  <SelectItem>Blue</SelectItem>
-                </SelectField>
+            <TabPanel id="form" className="space-y-8">
+              <div>
+                <Heading variant="h3">Text field</Heading>
+                <div className="mt-4 flex w-full items-start gap-8">
+                  <TextField
+                    label="Valid"
+                    isRequired={true}
+                    defaultValue="Hodnota"
+                    description="Description message"
+                    className="w-full"
+                  />
 
-                <MultiSelectField
-                  label="MultiSelect field"
-                  placeholder="Select an items"
-                >
-                  <MultiSelectItem>Red</MultiSelectItem>
-                  <MultiSelectItem>Green</MultiSelectItem>
-                  <MultiSelectItem>Blue</MultiSelectItem>
-                </MultiSelectField>
+                  <TextField
+                    label="Invalid"
+                    placeholder="Placeholder"
+                    validationState="invalid"
+                    description="Description message"
+                    errorMessage="Error message"
+                    className="w-full"
+                  />
+
+                  <TextField
+                    label="Disabled"
+                    isDisabled={true}
+                    defaultValue="Hodnota"
+                    className="w-full"
+                  />
+
+                  <TextField
+                    label="Readonly"
+                    isReadOnly={true}
+                    defaultValue="Hodnota"
+                    className="w-full"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Number field</Heading>
+                <div className="mt-4 flex w-full items-start gap-8">
+                  <NumberField
+                    label="Valid"
+                    isRequired={true}
+                    defaultValue={1000}
+                    formatOptions={{ style: "currency", currency: "CZK" }}
+                    description="Description message"
+                    className="w-full"
+                  />
+
+                  <NumberField
+                    label="Invalid"
+                    placeholder="Placeholder"
+                    formatOptions={{ style: "currency", currency: "CZK" }}
+                    validationState="invalid"
+                    description="Description message"
+                    errorMessage="Error message"
+                    className="w-full"
+                  />
+
+                  <NumberField
+                    label="Disabled"
+                    isDisabled={true}
+                    defaultValue={1000}
+                    formatOptions={{ style: "currency", currency: "CZK" }}
+                    className="w-full"
+                  />
+
+                  <NumberField
+                    label="Readonly"
+                    isReadOnly={true}
+                    defaultValue={1000}
+                    formatOptions={{ style: "currency", currency: "CZK" }}
+                    className="w-full"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Select field</Heading>
+                <div className="mt-4 flex w-full items-start gap-8">
+                  <SelectField
+                    label="Valid"
+                    isRequired={true}
+                    placeholder="Select an item"
+                    description="Description message"
+                    className="w-full"
+                  >
+                    <SelectItem>Red</SelectItem>
+                    <SelectItem>Green</SelectItem>
+                    <SelectItem>Blue</SelectItem>
+                  </SelectField>
+
+                  <SelectField
+                    label="Invalid"
+                    placeholder="Select an item"
+                    validationState="invalid"
+                    description="Description message"
+                    errorMessage="Error message"
+                    className="w-full"
+                  >
+                    <SelectItem>Red</SelectItem>
+                    <SelectItem>Green</SelectItem>
+                    <SelectItem>Blue</SelectItem>
+                  </SelectField>
+
+                  <SelectField
+                    label="Disabled"
+                    isDisabled={true}
+                    placeholder="Select an item"
+                    defaultSelectedKey="red"
+                    className="w-full"
+                  >
+                    <SelectItem key="red">Red</SelectItem>
+                    <SelectItem key="green">Green</SelectItem>
+                    <SelectItem key="blue">Blue</SelectItem>
+                  </SelectField>
+
+                  <SelectField
+                    label="Readonly"
+                    isReadOnly={true}
+                    placeholder="Select an item"
+                    defaultSelectedKey="red"
+                    className="w-full"
+                  >
+                    <SelectItem key="red">Red</SelectItem>
+                    <SelectItem key="green">Green</SelectItem>
+                    <SelectItem key="blue">Blue</SelectItem>
+                  </SelectField>
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Multiselect field</Heading>
+                <div className="mt-4 flex w-full items-start gap-8">
+                  <MultiSelectField
+                    label="Valid"
+                    isRequired={true}
+                    placeholder="Select an item"
+                    description="Description message"
+                    className="w-full"
+                  >
+                    <MultiSelectItem>Red</MultiSelectItem>
+                    <MultiSelectItem>Green</MultiSelectItem>
+                    <MultiSelectItem>Blue</MultiSelectItem>
+                  </MultiSelectField>
+
+                  <MultiSelectField
+                    label="Invalid"
+                    placeholder="Select an item"
+                    validationState="invalid"
+                    description="Description message"
+                    errorMessage="Error message"
+                    className="w-full"
+                  >
+                    <MultiSelectItem>Red</MultiSelectItem>
+                    <MultiSelectItem>Green</MultiSelectItem>
+                    <MultiSelectItem>Blue</MultiSelectItem>
+                  </MultiSelectField>
+
+                  <MultiSelectField
+                    label="Disabled"
+                    isDisabled={true}
+                    placeholder="Select an item"
+                    defaultSelectedKeys={["red"]}
+                    className="w-full"
+                  >
+                    <MultiSelectItem key="red">Red</MultiSelectItem>
+                    <MultiSelectItem key="green">Green</MultiSelectItem>
+                    <MultiSelectItem key="blue">Blue</MultiSelectItem>
+                  </MultiSelectField>
+
+                  <MultiSelectField
+                    label="Readonly"
+                    isReadOnly={true}
+                    placeholder="Select an item"
+                    defaultSelectedKeys={["red"]}
+                    className="w-full"
+                  >
+                    <MultiSelectItem key="red">Red</MultiSelectItem>
+                    <MultiSelectItem key="green">Green</MultiSelectItem>
+                    <MultiSelectItem key="blue">Blue</MultiSelectItem>
+                  </MultiSelectField>
+                </div>
               </div>
             </TabPanel>
           </CardContent>

@@ -7,29 +7,50 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "rgb(var(--color-background) / <alpha-value>)",
-        foreground: "rgb(var(--color-foreground) / <alpha-value>)",
-        "foreground-muted":
-          "rgb(var(--color-foreground-muted) / <alpha-value>)",
-        primary: "rgb(var(--color-primary) / <alpha-value>)",
-        "primary-foreground":
-          "rgb(var(--color-primary-foreground) / <alpha-value>)",
-        secondary: "rgb(var(--color-secondary) / <alpha-value>)",
-        "secondary-foreground":
-          "rgb(var(--color-secondary-foreground) / <alpha-value>)",
-        border: "rgb(var(--color-border) / <alpha-value>)",
-        "border-vivid": "rgb(var(--color-border-vivid) / <alpha-value>)",
-        accent: "rgb(var(--color-accent) / <alpha-value>)",
-        "accent-foreground":
-          "rgb(var(--color-accent-foreground) / <alpha-value>)",
-        card: "rgb(var(--color-card) / <alpha-value>)",
-        "card-foreground":
-          "rgb(var(--color-card-foreground) / <alpha-value>)",
-        ring: "rgb(var(--color-ring) / <alpha-value>)",
-        input: "rgb(var(--color-input) / <alpha-value>)",
-        "input-foreground":
-          "rgb(var(--color-input-foreground) / <alpha-value>)",
+        border: "hsl(var(--color-border))",
+        ring: "hsl(var(--color-ring))",
+        background: "hsl(var(--color-background))",
+        foreground: "hsl(var(--color-foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--color-primary))",
+          foreground: "hsl(var(--color-primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--color-secondary))",
+          foreground: "hsl(var(--color-secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--color-destructive))",
+          foreground: "hsl(var(--color-destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--color-muted))",
+          foreground: "hsl(var(--color-muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--color-accent))",
+          foreground: "hsl(var(--color-accent-foreground))",
+        },
+        input: {
+          DEFAULT: "hsl(var(--color-input))",
+          foreground: "hsl(var(--color-input-foreground))",
+          placeholder: "hsl(var(--color-input-placeholder))",
+          border: "hsl(var(--color-input-border))",
+          "border-accent": "hsl(var(--color-input-border-accent))",
+          ring: "hsl(var(--color-input-ring))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--color-card))",
+          foreground: "hsl(var(--color-card-foreground))",
+        },
+        error: colors.red,
+        success: colors.green,
+        info: colors.blue,
+        warning: colors.yellow,
       },
+      aria: {
+        invalid: 'invalid="true"'
+      }
     },
   },
   plugins: [],

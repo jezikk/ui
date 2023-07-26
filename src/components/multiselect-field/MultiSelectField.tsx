@@ -8,13 +8,13 @@ import {
   mergeProps,
   useOverlayTrigger,
   useKeyboard,
+  AriaFieldProps,
 } from "react-aria";
 import { DescriptionMessage } from "../description-message";
 import { ErrorMessage } from "../error-message";
 import { Label } from "../label";
 import { Popover } from "./Popover";
 import { ListBox } from "./Listbox";
-import { FieldProps } from "@/types/FieldProps";
 import { Button as RAButton } from "react-aria-components";
 import {
   useOverlayTriggerState,
@@ -25,7 +25,7 @@ import {
 } from "react-stately";
 
 interface MultiSelectFieldProps<TItem>
-  extends FieldProps,
+  extends AriaFieldProps,
     OverlayTriggerProps,
     Omit<
       ListProps<TItem>,
@@ -35,6 +35,7 @@ interface MultiSelectFieldProps<TItem>
   children: MultiSelectChildren<TItem>;
   isRequired?: boolean;
   isDisabled?: boolean;
+  isReadOnly?: boolean;
   name?: string;
   placeholder?: React.ReactNode;
   onSelectionChange?: (keys: Key[]) => void;
@@ -135,25 +136,26 @@ function MultiSelectField<TItem extends object>(
 
   return (
     <div className={props.className}>
-      <Label {...labelProps} isRequired={props.isRequired} className="mb-1.5">
+      <Label {...labelProps} isRequired={props.isRequired} className="mb-2">
         {props.label}
       </Label>
 
       <RAButton
         {...mergeProps(triggerProps, triggerKeyboardProps)}
         ref={triggerRef}
-        className="flex h-9 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm text-input-foreground shadow-sm focus:border-border-vivid focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+        isDisabled={props.isDisabled}
+        className="flex h-9 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm text-input-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus:border-input-border-accent focus:outline-none focus:ring-2 focus:ring-input-ring disabled:opacity-50 aria-invalid:border-error-300 aria-invalid:text-error-900 aria-invalid:placeholder:text-error-300 aria-invalid:focus:border-error-500 aria-invalid:focus:ring-error-200"
       >
         <span
           className={cn(
             "truncate",
-            listState.selectionManager.isEmpty && "text-foreground-muted",
+            listState.selectionManager.isEmpty && "text-muted-foreground",
           )}
         >
           {textValue}
         </span>
 
-        {!props.isDisabled && (
+        {!(props.isDisabled || props.isReadOnly) && (
           <ChevronUpDownIcon
             className="h-4 w-4 text-foreground"
             aria-hidden="true"
@@ -172,6 +174,7 @@ function MultiSelectField<TItem extends object>(
           <ListBox
             {...mergeProps(overlayProps, fieldProps)}
             state={listState}
+            shouldFocusOnHover={true}
             autoFocus
             className="max-h-72 overflow-auto p-1 outline-none"
             onClose={() => popoverState.close()}
@@ -181,11 +184,18 @@ function MultiSelectField<TItem extends object>(
         </Popover>
       )}
 
-      <DescriptionMessage {...descriptionProps} className="mt-1">
+      <DescriptionMessage
+        {...descriptionProps}
+        isHidden={
+          props.validationState === "invalid" ||
+          props.isDisabled ||
+          props.isReadOnly
+        }
+      >
         {props.description}
       </DescriptionMessage>
 
-      <ErrorMessage {...errorMessageProps} className="mt-1">
+      <ErrorMessage {...errorMessageProps} className="mt-2">
         {props.errorMessage}
       </ErrorMessage>
     </div>
