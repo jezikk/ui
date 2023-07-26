@@ -4,13 +4,13 @@ import { Card, CardContent, CardHeader } from "./components/card";
 import { Heading } from "./components/heading";
 import { NumberField } from "./components/number-field";
 import { Paragraph } from "./components/paragraph";
-import { SelectField, SelectItem } from "./components/select-field";
+import {
+  SelectField,
+  SelectItem,
+  MultiSelectField,
+} from "./components/select-field";
 import { Tab, TabList, TabPanel, Tabs } from "./components/tabs";
 import { TextField } from "./components/text-field";
-import {
-  MultiSelectField,
-  MultiSelectItem,
-} from "./components/multiselect-field";
 import { Link } from "./components/link";
 
 export function Demo() {
@@ -247,9 +247,9 @@ export function Demo() {
                     description="Description message"
                     className="w-full"
                   >
-                    <MultiSelectItem>Red</MultiSelectItem>
-                    <MultiSelectItem>Green</MultiSelectItem>
-                    <MultiSelectItem>Blue</MultiSelectItem>
+                    <SelectItem>Red</SelectItem>
+                    <SelectItem>Green</SelectItem>
+                    <SelectItem>Blue</SelectItem>
                   </MultiSelectField>
 
                   <MultiSelectField
@@ -260,9 +260,9 @@ export function Demo() {
                     errorMessage="Error message"
                     className="w-full"
                   >
-                    <MultiSelectItem>Red</MultiSelectItem>
-                    <MultiSelectItem>Green</MultiSelectItem>
-                    <MultiSelectItem>Blue</MultiSelectItem>
+                    <SelectItem>Red</SelectItem>
+                    <SelectItem>Green</SelectItem>
+                    <SelectItem>Blue</SelectItem>
                   </MultiSelectField>
 
                   <MultiSelectField
@@ -272,9 +272,9 @@ export function Demo() {
                     defaultSelectedKeys={["red"]}
                     className="w-full"
                   >
-                    <MultiSelectItem key="red">Red</MultiSelectItem>
-                    <MultiSelectItem key="green">Green</MultiSelectItem>
-                    <MultiSelectItem key="blue">Blue</MultiSelectItem>
+                    <SelectItem key="red">Red</SelectItem>
+                    <SelectItem key="green">Green</SelectItem>
+                    <SelectItem key="blue">Blue</SelectItem>
                   </MultiSelectField>
 
                   <MultiSelectField
@@ -284,9 +284,9 @@ export function Demo() {
                     defaultSelectedKeys={["red"]}
                     className="w-full"
                   >
-                    <MultiSelectItem key="red">Red</MultiSelectItem>
-                    <MultiSelectItem key="green">Green</MultiSelectItem>
-                    <MultiSelectItem key="blue">Blue</MultiSelectItem>
+                    <SelectItem key="red">Red</SelectItem>
+                    <SelectItem key="green">Green</SelectItem>
+                    <SelectItem key="blue">Blue</SelectItem>
                   </MultiSelectField>
                 </div>
               </div>

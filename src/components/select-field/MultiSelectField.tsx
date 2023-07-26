@@ -21,7 +21,6 @@ import {
   OverlayTriggerProps,
   useListState,
   ListProps,
-  Item,
 } from "react-stately";
 
 interface MultiSelectFieldProps<TItem>
@@ -69,6 +68,7 @@ function MultiSelectField<TItem extends object>(
   props: MultiSelectFieldProps<TItem>,
   forwardedRef: React.ForwardedRef<HTMLButtonElement>,
 ) {
+  const isError = props.validationState === "invalid";
   // Refs
   const triggerRef = useObjectRef(forwardedRef);
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -144,12 +144,17 @@ function MultiSelectField<TItem extends object>(
         {...mergeProps(triggerProps, triggerKeyboardProps)}
         ref={triggerRef}
         isDisabled={props.isDisabled}
-        className="flex h-9 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm text-input-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus:border-input-border-accent focus:outline-none focus:ring-2 focus:ring-input-ring disabled:opacity-50 aria-invalid:border-error-300 aria-invalid:text-error-900 aria-invalid:placeholder:text-error-300 aria-invalid:focus:border-error-500 aria-invalid:focus:ring-error-200"
+        className={cn(
+          "flex h-9 w-full items-center justify-between rounded-md border border-border bg-input px-3 py-1 text-sm text-input-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus:border-input-border-accent focus:outline-none focus:ring-2 focus:ring-input-ring disabled:opacity-50",
+          isError &&
+            "border-error-300 text-error-900 focus:border-error-500 focus:ring-error-200",
+        )}
       >
         <span
           className={cn(
             "truncate",
-            listState.selectionManager.isEmpty && "text-muted-foreground",
+            listState.selectionManager.isEmpty &&
+              (isError ? "text-error-300" : "text-muted-foreground"),
           )}
         >
           {textValue}
@@ -157,13 +162,16 @@ function MultiSelectField<TItem extends object>(
 
         {!(props.isDisabled || props.isReadOnly) && (
           <ChevronUpDownIcon
-            className="h-4 w-4 text-foreground"
+            className={cn(
+              "h-4 w-4 text-foreground",
+              isError && "text-error-900",
+            )}
             aria-hidden="true"
           />
         )}
       </RAButton>
 
-      {popoverState.isOpen && (
+      {popoverState.isOpen && !props.isReadOnly && (
         <Popover
           ref={popoverRef}
           state={popoverState}
@@ -210,4 +218,4 @@ type MultiSelectFieldWithRef = <TItem>(
 const _MultiSelectField = React.forwardRef(
   MultiSelectField,
 ) as MultiSelectFieldWithRef;
-export { _MultiSelectField as MultiSelectField, Item as MultiSelectItem };
+export { _MultiSelectField as MultiSelectField };

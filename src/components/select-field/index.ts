@@ -1,2 +1,6 @@
+import { Item } from "react-stately";
+
+export * from "./MultiSelectField";
 export * from "./SelectField";
-export * from "./SelectItem";
+
+export { Item as SelectItem };
