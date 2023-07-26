@@ -2,7 +2,7 @@ import { useObjectRef } from "@react-aria/utils";
 import React from "react";
 import { AriaButtonProps, useButton } from "react-aria";
 
-interface UnstyledButtonProps extends AriaButtonProps {
+export interface UnstyledButtonProps extends AriaButtonProps {
   className?: string;
   children: React.ReactNode;
 }

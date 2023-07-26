@@ -1,9 +1,6 @@
 import { tv, VariantProps } from "tailwind-variants";
 import React from "react";
-import {
-  Button as RAButton,
-  ButtonProps as RAButtonProps,
-} from "react-aria-components";
+import { UnstyledButton, UnstyledButtonProps } from "./UnstyledButton";
 
 const buttonVariants = tv({
   base: "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-ring disabled:pointer-events-none disabled:opacity-50",
@@ -30,7 +27,7 @@ const buttonVariants = tv({
 });
 
 export interface ButtonProps
-  extends RAButtonProps,
+  extends UnstyledButtonProps,
     VariantProps<typeof buttonVariants> {
   className?: string;
 }
@@ -38,13 +35,13 @@ export interface ButtonProps
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button({ className, variant, size, ...props }, forwardedRef) {
     return (
-      <RAButton
+      <UnstyledButton
         {...props}
         ref={forwardedRef}
         className={buttonVariants({ variant, size, className })}
       >
         {props.children}
-      </RAButton>
+      </UnstyledButton>
     );
   },
 );
