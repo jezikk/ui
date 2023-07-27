@@ -2,7 +2,7 @@ import { MutableRefObject, useEffect } from "react";
 
 export function useWidthObserver(
   sourceRef: MutableRefObject<HTMLElement>,
-  onChange: (width: string) => void
+  onChange: (width: string) => void,
 ) {
   useEffect(() => {
     const element = sourceRef.current;

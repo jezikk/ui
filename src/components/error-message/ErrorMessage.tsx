@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { Text, TextProps } from "react-aria-components";
+import { HTMLAttributes } from "react";
 
-interface Props extends TextProps {
+interface Props extends HTMLAttributes<HTMLSpanElement> {
   children?: React.ReactNode;
   className?: string;
 }
@@ -9,12 +9,12 @@ interface Props extends TextProps {
 export function ErrorMessage({ className, ...props }: Props) {
   if (!props.children) return null;
   return (
-    <Text
+    <span
       slot="errorMessage"
       {...props}
       className={cn("text-sm text-error-600", className)}
     >
       {props.children}
-    </Text>
+    </span>
   );
 }
