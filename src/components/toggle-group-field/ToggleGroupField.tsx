@@ -21,6 +21,7 @@ export const ToggleGroupField = React.forwardRef<
   const state = useRadioGroupState(props);
   const { radioGroupProps, labelProps, errorMessageProps, descriptionProps } =
     useRadioGroup({ ...props, orientation: "horizontal" }, state);
+
   return (
     <div className={className}>
       <Label {...labelProps} isRequired={props.isRequired} className="mb-2">
@@ -36,7 +37,12 @@ export const ToggleGroupField = React.forwardRef<
         )}
       >
         <ToggleGroupContext.Provider
-          value={{ state, isError, isReadOnly: props.isReadOnly }}
+          value={{
+            state,
+            isError,
+            isReadOnly: props.isReadOnly,
+            id: radioGroupProps.id,
+          }}
         >
           {props.children}
         </ToggleGroupContext.Provider>

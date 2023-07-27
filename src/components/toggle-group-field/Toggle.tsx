@@ -9,41 +9,48 @@ import {
 } from "react-aria";
 import { useToggleGroup } from "./ToggleGroupContext";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
-interface ToggleProps extends AriaRadioProps {
-  className?: string;
-}
+interface ToggleProps extends AriaRadioProps {}
 
 export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
-  ({ className, ...props }, forwardedRef) => {
+  (props, forwardedRef) => {
     const ref = useObjectRef(forwardedRef);
-    const { state, isError, isReadOnly } = useToggleGroup();
+    const { state, isError, isReadOnly, id } = useToggleGroup();
     const { inputProps, isSelected, isDisabled } = useRadio(props, state, ref);
     const { isFocusVisible, focusProps } = useFocusRing();
+
     return (
       <label
         className={cn(
-          "flex w-full cursor-pointer items-center justify-center rounded-md border border-transparent",
-          isSelected &&
-            "border-input-border bg-background text-input-foreground shadow-sm",
-          isError && isSelected && "border-error-300 text-error-900",
+          "relative flex w-full cursor-pointer items-center justify-center rounded-md border border-transparent",
+          isSelected && "text-input-foreground",
+          isError && isSelected && "text-error-900",
           isDisabled && "cursor-default text-muted-foreground",
           isReadOnly && "cursor-default",
           !isDisabled &&
             !isSelected &&
             !isReadOnly &&
             "hover:bg-muted-foreground/5",
-          isFocusVisible &&
-            (isError
-              ? "ring-2 ring-error-200"
-              : "border-input-border-accent ring-2 ring-input-ring"),
-          className,
         )}
       >
         <VisuallyHidden>
           <input {...mergeProps(inputProps, focusProps)} ref={ref} />
         </VisuallyHidden>
-        {props.children}
+        <span className="z-10">{props.children}</span>
+        {isSelected && (
+          <motion.span
+            layoutId={id}
+            className={cn(
+              "absolute inset-0 rounded-md border border-input-border bg-background shadow-sm",
+              isError && "border-error-300",
+              isFocusVisible &&
+                (isError
+                  ? "ring-2 ring-error-200"
+                  : "border-input-border-accent ring-2 ring-input-ring"),
+            )}
+          />
+        )}
       </label>
     );
   },

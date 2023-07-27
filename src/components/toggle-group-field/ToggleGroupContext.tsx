@@ -5,6 +5,7 @@ type ToggleGroupContextState = {
   state: RadioGroupState;
   isError?: boolean;
   isReadOnly?: boolean;
+  id?: string;
 };
 
 export const ToggleGroupContext =
