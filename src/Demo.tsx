@@ -12,6 +12,7 @@ import {
 import { Tab, TabList, TabPanel, Tabs } from "./components/tabs";
 import { TextField } from "./components/text-field";
 import { Link } from "./components/link";
+import { Toggle, ToggleGroupField } from "./components/toggle-group-field";
 
 export function Demo() {
   return (
@@ -288,6 +289,57 @@ export function Demo() {
                     <SelectItem key="green">Green</SelectItem>
                     <SelectItem key="blue">Blue</SelectItem>
                   </MultiSelectField>
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Toggle group field</Heading>
+                <div className="mt-4 flex w-full items-start gap-8">
+                  <ToggleGroupField
+                    label="Valid"
+                    isRequired={true}
+                    description="Description message"
+                    defaultValue="red"
+                    className="w-full"
+                  >
+                    <Toggle value="red">Red</Toggle>
+                    <Toggle value="green">Green</Toggle>
+                    <Toggle value="blue">Blue</Toggle>
+                  </ToggleGroupField>
+
+                  <ToggleGroupField
+                    label="Invalid"
+                    validationState="invalid"
+                    description="Description message"
+                    errorMessage="Error message"
+                    className="w-full"
+                  >
+                    <Toggle value="red">Red</Toggle>
+                    <Toggle value="green">Green</Toggle>
+                    <Toggle value="blue">Blue</Toggle>
+                  </ToggleGroupField>
+
+                  <ToggleGroupField
+                    label="Disabled"
+                    isDisabled={true}
+                    defaultValue="red"
+                    className="w-full"
+                  >
+                    <Toggle value="red">Red</Toggle>
+                    <Toggle value="green">Green</Toggle>
+                    <Toggle value="blue">Blue</Toggle>
+                  </ToggleGroupField>
+
+                  <ToggleGroupField
+                    label="Readonly"
+                    isReadOnly={true}
+                    defaultValue="green"
+                    className="w-full"
+                  >
+                    <Toggle value="red">Red</Toggle>
+                    <Toggle value="green">Green</Toggle>
+                    <Toggle value="blue">Blue</Toggle>
+                  </ToggleGroupField>
                 </div>
               </div>
             </TabPanel>
