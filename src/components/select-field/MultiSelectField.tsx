@@ -15,13 +15,14 @@ import { ErrorMessage } from "../error-message";
 import { Label } from "../label";
 import { Popover } from "./Popover";
 import { ListBox } from "./Listbox";
-import { Button as RAButton } from "react-aria-components";
 import {
   useOverlayTriggerState,
   OverlayTriggerProps,
   useListState,
   ListProps,
 } from "react-stately";
+import { UnstyledButton } from "../button";
+import { AnimatePresence } from "framer-motion";
 
 interface MultiSelectFieldProps<TItem>
   extends AriaFieldProps,
@@ -140,7 +141,7 @@ function MultiSelectField<TItem extends object>(
         {props.label}
       </Label>
 
-      <RAButton
+      <UnstyledButton
         {...mergeProps(triggerProps, triggerKeyboardProps)}
         ref={triggerRef}
         isDisabled={props.isDisabled}
@@ -169,28 +170,30 @@ function MultiSelectField<TItem extends object>(
             aria-hidden="true"
           />
         )}
-      </RAButton>
+      </UnstyledButton>
 
-      {popoverState.isOpen && !props.isReadOnly && (
-        <Popover
-          ref={popoverRef}
-          state={popoverState}
-          triggerRef={triggerRef}
-          placement="bottom start"
-          className="overflow-hidden rounded-md border border-border bg-background text-foreground shadow-md"
-        >
-          <ListBox
-            {...mergeProps(overlayProps, fieldProps)}
-            state={listState}
-            shouldFocusOnHover={true}
-            autoFocus
-            className="max-h-72 overflow-auto p-1 outline-none"
-            onClose={() => popoverState.close()}
+      <AnimatePresence initial={false}>
+        {popoverState.isOpen && !props.isReadOnly && (
+          <Popover
+            ref={popoverRef}
+            state={popoverState}
+            triggerRef={triggerRef}
+            placement="bottom start"
+            className="overflow-hidden rounded-md border border-border bg-background text-foreground shadow-md"
           >
-            {props.children}
-          </ListBox>
-        </Popover>
-      )}
+            <ListBox
+              {...mergeProps(overlayProps, fieldProps)}
+              state={listState}
+              shouldFocusOnHover={true}
+              autoFocus
+              className="max-h-72 overflow-auto p-1 outline-none"
+              onClose={() => popoverState.close()}
+            >
+              {props.children}
+            </ListBox>
+          </Popover>
+        )}
+      </AnimatePresence>
 
       <DescriptionMessage
         {...descriptionProps}
