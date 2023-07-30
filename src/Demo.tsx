@@ -52,7 +52,13 @@ export function Demo() {
               <div>
                 <Heading variant="h3">Primary</Heading>
                 <div className="mt-4 flex items-center gap-4">
-                  <Button>Enabled</Button>
+                  <Button
+                    onPress={() => {
+                      console.log("Press");
+                    }}
+                  >
+                    Enabled
+                  </Button>
                   <Button isDisabled>Disabled</Button>
                 </div>
               </div>

@@ -1,6 +1,12 @@
-import { useObjectRef } from "@react-aria/utils";
+import { useContextProps } from "@/hooks/useContextProps";
 import React from "react";
-import { AriaButtonProps, useButton } from "react-aria";
+import {
+  AriaButtonProps,
+  mergeProps,
+  useButton,
+  useFocusRing,
+} from "react-aria";
+import { ButtonContext } from "./ButtonProvider";
 
 export interface UnstyledButtonProps extends AriaButtonProps {
   className?: string;
@@ -11,11 +17,17 @@ export const UnstyledButton = React.forwardRef<
   HTMLButtonElement,
   UnstyledButtonProps
 >(({ className, children, ...props }, forwardedRef) => {
-  const ref = useObjectRef(forwardedRef);
-  const { buttonProps } = useButton(props, ref);
+  const [ctxProps, ref] = useContextProps(props, forwardedRef, ButtonContext);
+  const { buttonProps } = useButton(ctxProps, ref);
+  const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <button {...buttonProps} className={className} ref={forwardedRef}>
+    <button
+      {...mergeProps(buttonProps, focusProps)}
+      className={className}
+      ref={forwardedRef}
+      data-focus-visible={isFocusVisible ? true : undefined}
+    >
       {children}
     </button>
   );
