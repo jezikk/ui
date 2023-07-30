@@ -13,6 +13,8 @@ import { Tab, TabList, TabPanel, Tabs } from "./components/tabs";
 import { TextField } from "./components/text-field";
 import { Link } from "./components/link";
 import { Toggle, ToggleGroupField } from "./components/toggle-group-field";
+import { DialogTrigger } from "./components/dialog";
+import { Modal } from "./components/modal";
 
 export function Demo() {
   return (
@@ -24,6 +26,7 @@ export function Demo() {
               <Tab id="typography">Typography</Tab>
               <Tab id="buttons">Buttons</Tab>
               <Tab id="form">Form</Tab>
+              <Tab id="dialogs">Dialogs</Tab>
             </TabList>
           </CardHeader>
           <CardContent>
@@ -348,6 +351,13 @@ export function Demo() {
                   </ToggleGroupField>
                 </div>
               </div>
+            </TabPanel>
+
+            <TabPanel id="dialogs" className="space-y-8">
+              <DialogTrigger>
+                <Button>Modal</Button>
+                <Modal>Test</Modal>
+              </DialogTrigger>
             </TabPanel>
           </CardContent>
         </Tabs>
