@@ -1,4 +1,6 @@
+import { useContextProps } from "@/hooks/useContextProps";
 import { VariantProps, tv } from "tailwind-variants";
+import { HeadingContext } from "./HeadingProvider";
 
 const headingVariants = tv({
   base: "scroll-m-20",
@@ -24,8 +26,13 @@ interface HeadingProps
 
 export function Heading({ variant, className, as, ...props }: HeadingProps) {
   const Element = as ? as : variant!;
+  const [{ level, ...ctxProps }] = useContextProps(props, null, HeadingContext);
+  const mergedProps = as === `h${level}` ? ctxProps : props;
 
   return (
-    <Element {...props} className={headingVariants({ variant, className })} />
+    <Element
+      {...mergedProps}
+      className={headingVariants({ variant, className })}
+    />
   );
 }

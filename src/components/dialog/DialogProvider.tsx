@@ -2,7 +2,11 @@ import { ContextValue } from "@/hooks/useContextProps";
 import React from "react";
 import { AriaDialogProps } from "react-aria";
 
-type DialogContextValue = ContextValue<AriaDialogProps, HTMLDivElement>;
+interface DialogPropsWithState extends AriaDialogProps {
+  close?: () => void;
+}
+
+type DialogContextValue = ContextValue<DialogPropsWithState, HTMLDivElement>;
 
 export const DialogContext = React.createContext<DialogContextValue>(null);
 export function DialogProvider({
