@@ -28,7 +28,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       children instanceof Function ? children({ close, titleProps }) : children;
 
     return (
-      <div
+      <section
         {...mergeProps(ctxProps, dialogProps)}
         ref={ref}
         className={cn("space-y-4 outline-none", className)}
@@ -36,7 +36,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
         <HeadingProvider {...{ ...titleProps, level: 2 }}>
           {content}
         </HeadingProvider>
-      </div>
+      </section>
     );
   },
 );
