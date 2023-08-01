@@ -354,17 +354,31 @@ export function Demo() {
             </TabPanel>
 
             <TabPanel id="dialogs" className="space-y-8">
-              <DialogTrigger>
-                <Button>Modal</Button>
-                <Modal>
-                  <Dialog>
-                    <Heading as="h2" variant="h2">
-                      Test heading
-                    </Heading>
-                    <Paragraph variant="muted">Some text</Paragraph>
-                  </Dialog>
-                </Modal>
-              </DialogTrigger>
+              <div>
+                <Heading variant="h3">Information modal</Heading>
+                <div className="mt-4 flex w-full items-start gap-8">
+                  <DialogTrigger>
+                    <Button>Open</Button>
+                    <Modal>
+                      <Dialog>
+                        {({ close }) => (
+                          <>
+                            <Heading as="h2" variant="h3">
+                              Payment successful
+                            </Heading>
+                            <Paragraph variant="muted">
+                              Your payment has been successfully submitted.
+                              We’ve sent you an email with all of the details of
+                              your order.
+                            </Paragraph>
+                            <Button onPress={close}>Confirm</Button>
+                          </>
+                        )}
+                      </Dialog>
+                    </Modal>
+                  </DialogTrigger>
+                </div>
+              </div>
             </TabPanel>
           </CardContent>
         </Tabs>

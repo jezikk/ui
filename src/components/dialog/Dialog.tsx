@@ -28,7 +28,11 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
       children instanceof Function ? children({ close, titleProps }) : children;
 
     return (
-      <div {...dialogProps} ref={ref} className={cn("outline-none", className)}>
+      <div
+        {...dialogProps}
+        ref={ref}
+        className={cn("space-y-4 outline-none", className)}
+      >
         <HeadingProvider {...{ ...titleProps, level: 2 }}>
           {content}
         </HeadingProvider>

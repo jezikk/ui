@@ -3,8 +3,9 @@ import React from "react";
 import { AriaModalOverlayProps, Overlay, useModalOverlay } from "react-aria";
 import { OverlayTriggerState } from "react-stately";
 import { ModalContext } from "./ModalProvider";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 interface ModalProps extends AriaModalOverlayProps {
   state?: OverlayTriggerState;
@@ -19,25 +20,73 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       forwardedRef,
       ModalContext,
     );
+
     const { modalProps, underlayProps } = useModalOverlay(
       { isDismissable: true, ...ctxProps },
       state,
       ref,
     );
+
+    const backdropVariants: Variants = {
+      hide: {
+        opacity: 0,
+        backdropFilter: "blur(0px)",
+        WebkitBackdropFilter: "blur(0px)",
+        transition: { ease: "easeOut", duration: 0.075 },
+      },
+      show: {
+        opacity: 1,
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
+        transition: { ease: "easeIn", duration: 0.1 },
+      },
+    };
+
+    const modalVariants: Variants = {
+      hide: {
+        opacity: 0,
+        top: "45%",
+        transition: { ease: "easeOut", duration: 0.075 },
+      },
+      show: {
+        opacity: 1,
+        top: "50%",
+        transition: { ease: "easeIn", duration: 0.1 },
+      },
+    };
+
     return (
       <AnimatePresence initial={false}>
         {state.isOpen && (
           <Overlay>
             <div {...underlayProps}>
-              <motion.div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm" />
+              <motion.div
+                variants={backdropVariants}
+                initial="hide"
+                animate="show"
+                exit="hide"
+                className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm"
+              />
             </div>
             <div {...modalProps} ref={ref}>
               <motion.div
+                variants={modalVariants}
+                initial="hide"
+                animate="show"
+                exit="hide"
                 className={cn(
-                  "fixed left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%] border border-border bg-background p-6 text-foreground shadow-lg",
+                  "fixed relative left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-lg border border-border bg-background p-6 text-foreground shadow-lg",
                   className,
                 )}
               >
+                <button
+                  type="button"
+                  className="absolute right-5 top-5 rounded-md p-1 text-muted-foreground hover:cursor-pointer hover:bg-accent"
+                  onClick={() => state.close()}
+                >
+                  <XMarkIcon className="h-5 w-5" aria-hidden={true} />
+                  <span className="sr-only">Close</span>
+                </button>
                 {children}
               </motion.div>
             </div>
