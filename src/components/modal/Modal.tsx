@@ -14,7 +14,7 @@ interface ModalProps extends AriaModalOverlayProps {
 }
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
-  ({ className, children, ...props }, forwardedRef) => {
+  ({ className, children, isDismissable = true, ...props }, forwardedRef) => {
     const [{ state, ...ctxProps }, ref] = useContextProps(
       props,
       forwardedRef,
@@ -22,7 +22,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     );
 
     const { modalProps, underlayProps } = useModalOverlay(
-      { isDismissable: true, ...ctxProps },
+      { ...ctxProps, isDismissable },
       state,
       ref,
     );
@@ -79,14 +79,16 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   className,
                 )}
               >
-                <button
-                  type="button"
-                  className="absolute right-5 top-5 rounded-md p-1 text-muted-foreground hover:cursor-pointer hover:bg-accent"
-                  onClick={() => state.close()}
-                >
-                  <XMarkIcon className="h-5 w-5" aria-hidden={true} />
-                  <span className="sr-only">Close</span>
-                </button>
+                {isDismissable && (
+                  <button
+                    type="button"
+                    className="absolute right-5 top-5 rounded-md p-1 text-muted-foreground hover:cursor-pointer hover:bg-accent"
+                    onClick={() => state.close()}
+                  >
+                    <XMarkIcon className="h-5 w-5" aria-hidden={true} />
+                    <span className="sr-only">Close</span>
+                  </button>
+                )}
                 {children}
               </motion.div>
             </div>

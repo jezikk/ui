@@ -1,6 +1,6 @@
 import { useContextProps } from "@/hooks/useContextProps";
 import React, { DOMAttributes } from "react";
-import { AriaDialogProps, useDialog } from "react-aria";
+import { AriaDialogProps, mergeProps, useDialog } from "react-aria";
 import { DialogContext } from ".";
 import { HeadingProvider } from "../heading";
 import { cn } from "@/lib/utils";
@@ -29,7 +29,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
 
     return (
       <div
-        {...dialogProps}
+        {...mergeProps(ctxProps, dialogProps)}
         ref={ref}
         className={cn("space-y-4 outline-none", className)}
       >

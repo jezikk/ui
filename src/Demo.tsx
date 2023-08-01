@@ -13,7 +13,7 @@ import { Tab, TabList, TabPanel, Tabs } from "./components/tabs";
 import { TextField } from "./components/text-field";
 import { Link } from "./components/link";
 import { Toggle, ToggleGroupField } from "./components/toggle-group-field";
-import { Dialog, DialogTrigger } from "./components/dialog";
+import { Dialog, DialogConfirm, DialogTrigger } from "./components/dialog";
 import { Modal } from "./components/modal";
 
 export function Demo() {
@@ -355,7 +355,7 @@ export function Demo() {
 
             <TabPanel id="dialogs" className="space-y-8">
               <div>
-                <Heading variant="h3">Information modal</Heading>
+                <Heading variant="h3">Information dialog</Heading>
                 <div className="mt-4 flex w-full items-start gap-8">
                   <DialogTrigger>
                     <Button>Open</Button>
@@ -375,6 +375,23 @@ export function Demo() {
                           </>
                         )}
                       </Dialog>
+                    </Modal>
+                  </DialogTrigger>
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Confirm dialog</Heading>
+                <div className="mt-4 flex w-full items-start gap-8">
+                  <DialogTrigger>
+                    <Button>Open</Button>
+                    <Modal>
+                      <DialogConfirm
+                        title="Remove item"
+                        description="Are you sure you want to remove the item? All data will be permanently removed from server."
+                        confirmButton="Remove"
+                        onConfirm={() => console.log("Confirm")}
+                      />
                     </Modal>
                   </DialogTrigger>
                 </div>
