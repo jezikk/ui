@@ -15,6 +15,7 @@ import { Link } from "./components/link";
 import { Toggle, ToggleGroupField } from "./components/toggle-group-field";
 import { Dialog, DialogConfirm, DialogTrigger } from "./components/dialog";
 import { Modal } from "./components/modal";
+import { SwitchField } from "./components/switch-field";
 
 export function Demo() {
   return (
@@ -349,6 +350,13 @@ export function Demo() {
                     <Toggle value="green">Green</Toggle>
                     <Toggle value="blue">Blue</Toggle>
                   </ToggleGroupField>
+                </div>
+              </div>
+
+              <div>
+                <Heading variant="h3">Switch field</Heading>
+                <div className="mt-4 flex w-full items-start gap-8">
+                  <SwitchField>Dark mode</SwitchField>
                 </div>
               </div>
             </TabPanel>
