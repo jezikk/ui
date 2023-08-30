@@ -2,7 +2,7 @@ import { useObjectRef } from "@react-aria/utils";
 import React from "react";
 import { AriaListBoxOptions, AriaListBoxProps, useListBox } from "react-aria";
 import { ListState } from "react-stately";
-import { Option } from "./Option";
+import { Option } from "./option";
 
 interface ListBoxProps<TItem>
   extends AriaListBoxOptions<TItem>,

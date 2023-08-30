@@ -1,2 +1,2 @@
-export * from "./Heading";
-export * from "./HeadingProvider";
+export * from "./heading";
+export * from "./heading-provider";

@@ -1,1 +1,1 @@
-export * from "./DescriptionMessage";
+export * from "./description-message";

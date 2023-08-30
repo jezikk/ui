@@ -1,8 +1,8 @@
-import { useContextProps } from "@/hooks/useContextProps";
+import { useContextProps } from "@/hooks/use-context-props";
 import React from "react";
 import { AriaModalOverlayProps, Overlay, useModalOverlay } from "react-aria";
 import { OverlayTriggerState } from "react-stately";
-import { ModalContext } from "./ModalProvider";
+import { ModalContext } from "./modal-provider";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { XMarkIcon } from "@heroicons/react/20/solid";
@@ -15,7 +15,7 @@ interface ModalProps extends AriaModalOverlayProps {
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ className, children, isDismissable = true, ...props }, forwardedRef) => {
-    const [{ state, ...ctxProps }, ref] = useContextProps(
+    const [{ state: ctxState, ...ctxProps }, ref] = useContextProps(
       props,
       forwardedRef,
       ModalContext,
@@ -23,7 +23,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
     const { modalProps, underlayProps } = useModalOverlay(
       { ...ctxProps, isDismissable },
-      state,
+      ctxState,
       ref,
     );
 
@@ -45,19 +45,19 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const modalVariants: Variants = {
       hide: {
         opacity: 0,
-        top: "45%",
+        top: "37%",
         transition: { ease: "easeOut", duration: 0.075 },
       },
       show: {
         opacity: 1,
-        top: "50%",
+        top: "40%",
         transition: { ease: "easeIn", duration: 0.1 },
       },
     };
 
     return (
       <AnimatePresence initial={false}>
-        {state.isOpen && (
+        {ctxState.isOpen && (
           <Overlay>
             <div {...underlayProps}>
               <motion.div
@@ -75,7 +75,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 animate="show"
                 exit="hide"
                 className={cn(
-                  "fixed relative left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-lg border border-border bg-background p-6 text-foreground shadow-lg",
+                  "fixed left-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-lg border border-border bg-background p-6 text-foreground shadow-lg",
                   className,
                 )}
               >
@@ -83,7 +83,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   <button
                     type="button"
                     className="absolute right-5 top-5 rounded-md p-1 text-muted-foreground hover:cursor-pointer hover:bg-accent"
-                    onClick={() => state.close()}
+                    onClick={() => ctxState.close()}
                   >
                     <XMarkIcon className="h-5 w-5" aria-hidden={true} />
                     <span className="sr-only">Close</span>

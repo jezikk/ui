@@ -1,6 +1,7 @@
-import { useContextProps } from "@/hooks/useContextProps";
+import { useContextProps } from "@/hooks/use-context-props";
 import { VariantProps, tv } from "tailwind-variants";
-import { HeadingContext } from "./HeadingProvider";
+import { HeadingContext } from "./heading-provider";
+import React from "react";
 
 const headingVariants = tv({
   base: "scroll-m-20",
@@ -24,15 +25,24 @@ interface HeadingProps
   children: React.ReactNode;
 }
 
-export function Heading({ variant, className, as, ...props }: HeadingProps) {
-  const Element = as ? as : variant!;
-  const [{ level, ...ctxProps }] = useContextProps(props, null, HeadingContext);
-  const mergedProps = as === `h${level}` ? ctxProps : props;
+export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+  ({ variant, className, as, ...props }, forwardedRef) => {
+    const Element = as ? as : variant!;
+    const [{ level, ...ctxProps }, ref] = useContextProps(
+      props,
+      forwardedRef,
+      HeadingContext,
+    );
+    const mergedProps = as === `h${level}` ? ctxProps : props;
 
-  return (
-    <Element
-      {...mergedProps}
-      className={headingVariants({ variant, className })}
-    />
-  );
-}
+    return (
+      <Element
+        {...mergedProps}
+        ref={ref}
+        className={headingVariants({ variant, className })}
+      />
+    );
+  },
+);
+
+Heading.displayName = "Heading";

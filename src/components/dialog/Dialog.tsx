@@ -1,4 +1,4 @@
-import { useContextProps } from "@/hooks/useContextProps";
+import { useContextProps } from "@/hooks/use-context-props";
 import React, { DOMAttributes } from "react";
 import { AriaDialogProps, mergeProps, useDialog } from "react-aria";
 import { DialogContext } from ".";
@@ -33,7 +33,7 @@ export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
         ref={ref}
         className={cn("space-y-4 outline-none", className)}
       >
-        <HeadingProvider {...{ ...titleProps, level: 2 }}>
+        <HeadingProvider {...titleProps} level={2}>
           {content}
         </HeadingProvider>
       </section>

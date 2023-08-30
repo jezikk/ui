@@ -16,6 +16,8 @@ import { Toggle, ToggleGroupField } from "./components/toggle-group-field";
 import { Dialog, DialogConfirm, DialogTrigger } from "./components/dialog";
 import { Modal } from "./components/modal";
 import { SwitchField } from "./components/switch-field";
+import { Menu, MenuItem, MenuTrigger } from "./components/menu";
+import { Popover } from "./components/popover";
 
 export function Demo() {
   return (
@@ -28,6 +30,7 @@ export function Demo() {
               <Tab id="buttons">Buttons</Tab>
               <Tab id="form">Form</Tab>
               <Tab id="dialogs">Dialogs</Tab>
+              <Tab id="menu">Menu</Tab>
             </TabList>
           </CardHeader>
           <CardContent>
@@ -118,6 +121,7 @@ export function Demo() {
             </TabPanel>
 
             <TabPanel id="form" className="space-y-8">
+              {/* Text fields */}
               <div>
                 <Heading variant="h3">Text field</Heading>
                 <div className="mt-4 flex w-full items-start gap-8">
@@ -154,6 +158,7 @@ export function Demo() {
                 </div>
               </div>
 
+              {/* Number fields */}
               <div>
                 <Heading variant="h3">Number field</Heading>
                 <div className="mt-4 flex w-full items-start gap-8">
@@ -194,6 +199,7 @@ export function Demo() {
                 </div>
               </div>
 
+              {/* Select fields */}
               <div>
                 <Heading variant="h3">Select field</Heading>
                 <div className="mt-4 flex w-full items-start gap-8">
@@ -248,6 +254,7 @@ export function Demo() {
                 </div>
               </div>
 
+              {/* Multiselect fields */}
               <div>
                 <Heading variant="h3">Multiselect field</Heading>
                 <div className="mt-4 flex w-full items-start gap-8">
@@ -302,6 +309,7 @@ export function Demo() {
                 </div>
               </div>
 
+              {/* Toggle group fields */}
               <div>
                 <Heading variant="h3">Toggle group field</Heading>
                 <div className="mt-4 flex w-full items-start gap-8">
@@ -353,12 +361,12 @@ export function Demo() {
                 </div>
               </div>
 
-              <div>
+              {/* <div>
                 <Heading variant="h3">Switch field</Heading>
                 <div className="mt-4 flex w-full items-start gap-8">
                   <SwitchField>Dark mode</SwitchField>
                 </div>
-              </div>
+              </div> */}
             </TabPanel>
 
             <TabPanel id="dialogs" className="space-y-8">
@@ -402,6 +410,25 @@ export function Demo() {
                       />
                     </Modal>
                   </DialogTrigger>
+                </div>
+              </div>
+            </TabPanel>
+
+            <TabPanel id="menu" className="space-y-8">
+              <div>
+                <Heading variant="h3">Information dialog</Heading>
+                <div className="mt-4 flex w-full items-start gap-8">
+                  <MenuTrigger>
+                    <Button>Menu</Button>
+                    <Popover>
+                      <Menu aria-label="Items">
+                        <MenuItem key={1}>Item 1</MenuItem>
+                        <MenuItem key={2}>Item 2</MenuItem>
+                        <MenuItem key={3}>Item 3</MenuItem>
+                        <MenuItem key={4}>Item 4</MenuItem>
+                      </Menu>
+                    </Popover>
+                  </MenuTrigger>
                 </div>
               </div>
             </TabPanel>

@@ -1,9 +1,9 @@
-import { ContextValue } from "@/hooks/useContextProps";
+import { ContextValue } from "@/hooks/use-context-props";
 import React from "react";
 import { AriaModalOverlayProps } from "react-aria";
 import { OverlayTriggerState } from "react-stately";
 
-interface ModalContextProps extends AriaModalOverlayProps {
+export interface ModalContextProps extends AriaModalOverlayProps {
   state: OverlayTriggerState;
 }
 type ModalContextValue = ContextValue<ModalContextProps, HTMLDivElement>;

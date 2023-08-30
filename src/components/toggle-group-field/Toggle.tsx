@@ -7,7 +7,7 @@ import {
   mergeProps,
   useFocusRing,
 } from "react-aria";
-import { useToggleGroup } from "./ToggleGroupContext";
+import { useToggleGroup } from "./toggle-group-context";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 

@@ -1,4 +1,4 @@
-import { useContextProps } from "@/hooks/useContextProps";
+import { useContextProps } from "@/hooks/use-context-props";
 import React from "react";
 import {
   AriaButtonProps,
@@ -6,7 +6,7 @@ import {
   useButton,
   useFocusRing,
 } from "react-aria";
-import { ButtonContext } from "./ButtonProvider";
+import { ButtonContext } from "./button-provider";
 
 export interface UnstyledButtonProps extends AriaButtonProps {
   className?: string;
@@ -25,7 +25,7 @@ export const UnstyledButton = React.forwardRef<
     <button
       {...mergeProps(buttonProps, focusProps)}
       className={className}
-      ref={forwardedRef}
+      ref={ref}
       data-focus-visible={isFocusVisible ? true : undefined}
     >
       {children}

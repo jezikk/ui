@@ -5,7 +5,7 @@ import { Label } from "../label";
 import { DescriptionMessage } from "../description-message";
 import { ErrorMessage } from "../error-message";
 import { cn } from "@/lib/utils";
-import { ToggleGroupContext } from "./ToggleGroupContext";
+import { ToggleGroupContext } from "./toggle-group-context";
 
 interface ToggleGroupFieldProps
   extends Omit<AriaRadioGroupProps, "orientation"> {

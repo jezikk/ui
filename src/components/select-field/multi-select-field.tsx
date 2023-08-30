@@ -1,4 +1,4 @@
-import { useWidthObserver } from "@/hooks/useWidthObserver";
+import { useWidthObserver } from "@/hooks/use-width-observer";
 import { cn } from "@/lib/utils";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { useObjectRef } from "@react-aria/utils";
@@ -13,8 +13,8 @@ import {
 import { DescriptionMessage } from "../description-message";
 import { ErrorMessage } from "../error-message";
 import { Label } from "../label";
-import { Popover } from "./Popover";
-import { ListBox } from "./Listbox";
+import { Popover } from "../popover";
+import { ListBox } from "./listbox";
 import {
   useOverlayTriggerState,
   OverlayTriggerProps,
@@ -22,7 +22,6 @@ import {
   ListProps,
 } from "react-stately";
 import { UnstyledButton } from "../button";
-import { AnimatePresence } from "framer-motion";
 
 interface MultiSelectFieldProps<TItem>
   extends AriaFieldProps,
@@ -172,28 +171,23 @@ function MultiSelectField<TItem extends object>(
         )}
       </UnstyledButton>
 
-      <AnimatePresence initial={false}>
-        {popoverState.isOpen && !props.isReadOnly && (
-          <Popover
-            ref={popoverRef}
-            state={popoverState}
-            triggerRef={triggerRef}
-            placement="bottom start"
-            className="overflow-hidden rounded-md border border-border bg-background text-foreground shadow-md"
-          >
-            <ListBox
-              {...mergeProps(overlayProps, fieldProps)}
-              state={listState}
-              shouldFocusOnHover={true}
-              autoFocus
-              className="max-h-72 overflow-auto p-1 outline-none"
-              onClose={() => popoverState.close()}
-            >
-              {props.children}
-            </ListBox>
-          </Popover>
-        )}
-      </AnimatePresence>
+      <Popover
+        ref={popoverRef}
+        state={popoverState}
+        triggerRef={triggerRef}
+        placement="bottom start"
+      >
+        <ListBox
+          {...mergeProps(overlayProps, fieldProps)}
+          state={listState}
+          shouldFocusOnHover={true}
+          autoFocus
+          className="max-h-72 overflow-auto p-1 outline-none"
+          onClose={() => popoverState.close()}
+        >
+          {props.children}
+        </ListBox>
+      </Popover>
 
       <DescriptionMessage
         {...descriptionProps}

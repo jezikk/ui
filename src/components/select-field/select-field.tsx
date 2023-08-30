@@ -13,11 +13,10 @@ import { UnstyledButton } from "../button";
 import { DescriptionMessage } from "../description-message";
 import { ErrorMessage } from "../error-message";
 import { Label } from "../label";
-import { Popover } from "./Popover";
-import { ListBox } from "./Listbox";
+import { Popover } from "../popover";
+import { ListBox } from "./listbox";
 import { cn } from "@/lib/utils";
-import { useWidthObserver } from "@/hooks/useWidthObserver";
-import { AnimatePresence } from "framer-motion";
+import { useWidthObserver } from "@/hooks/use-width-observer";
 
 interface SelectFieldProps<TItem>
   extends AriaSelectOptions<TItem>,
@@ -104,25 +103,20 @@ function SelectField<TItem extends object>(
         )}
       </UnstyledButton>
 
-      <AnimatePresence initial={false}>
-        {state.isOpen && !props.isReadOnly && (
-          <Popover
-            ref={popoverRef}
-            state={state}
-            triggerRef={triggerRef}
-            placement="bottom start"
-            className="overflow-hidden rounded-md border border-border bg-background text-foreground shadow-md"
-          >
-            <ListBox
-              {...menuProps}
-              state={state}
-              className="max-h-72 overflow-auto p-1 outline-none"
-            >
-              {props.children}
-            </ListBox>
-          </Popover>
-        )}
-      </AnimatePresence>
+      <Popover
+        ref={popoverRef}
+        state={state}
+        triggerRef={triggerRef}
+        placement="bottom start"
+      >
+        <ListBox
+          {...menuProps}
+          state={state}
+          className="max-h-72 overflow-auto p-1 outline-none"
+        >
+          {props.children}
+        </ListBox>
+      </Popover>
 
       <DescriptionMessage
         {...descriptionProps}

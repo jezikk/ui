@@ -1,6 +1,6 @@
 import { tv, VariantProps } from "tailwind-variants";
 import React from "react";
-import { UnstyledButton, UnstyledButtonProps } from "./UnstyledButton";
+import { UnstyledButton, UnstyledButtonProps } from "./button-unstyled";
 
 const buttonVariants = tv({
   base: "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors outline-none data-[focus-visible]:ring-2 data-[focus-visible]:ring-ring disabled:pointer-events-none disabled:opacity-50",

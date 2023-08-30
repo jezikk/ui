@@ -1,2 +1,2 @@
-export * from "./ToggleGroupField";
-export * from "./Toggle";
+export * from "./toggle-group-field";
+export * from "./toggle";

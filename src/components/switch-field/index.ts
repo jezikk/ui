@@ -1,1 +1,1 @@
-export * from "./SwitchField";
+export * from "./switch-field";

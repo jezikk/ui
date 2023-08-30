@@ -8,10 +8,12 @@ export function useWidthObserver(
     const element = sourceRef.current;
     if (!element) return;
 
-    const observer = new ResizeObserver(() => {
-      const width = element.offsetWidth + "px";
-      onChange(width);
-    });
+    const observer = new ResizeObserver(() =>
+      window.requestAnimationFrame(() => {
+        const width = element.offsetWidth + "px";
+        onChange(width);
+      }),
+    );
 
     observer.observe(element);
 

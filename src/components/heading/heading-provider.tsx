@@ -1,4 +1,4 @@
-import { ContextValue } from "@/hooks/useContextProps";
+import { ContextValue } from "@/hooks/use-context-props";
 import React, { DOMAttributes } from "react";
 
 type HeadingContextValue = ContextValue<

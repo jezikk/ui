@@ -21,7 +21,7 @@ export function DialogTrigger({ children, ...props }: DialogTriggerProps) {
   return (
     <ButtonProvider {...triggerProps}>
       <ModalProvider state={state}>
-        <DialogProvider {...{ ...overlayProps, close: () => state.close() }}>
+        <DialogProvider {...overlayProps} close={() => state.close()}>
           {children}
         </DialogProvider>
       </ModalProvider>
