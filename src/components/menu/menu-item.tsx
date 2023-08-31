@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { useRef } from "react";
 import { useMenuItem } from "react-aria";
 import { Node, TreeState } from "react-stately";
@@ -16,8 +17,22 @@ export function MenuItem({ className, item, state }: MenuItemProps) {
     ref,
   );
 
+  const isDestroy = item.key.toString().includes("destroy");
+
   return (
-    <li {...menuItemProps} className={className} ref={ref}>
+    <li
+      {...menuItemProps}
+      className={cn(
+        "flex items-center gap-x-2 rounded-md px-2 py-1.5 text-sm outline-none",
+        isSelected && "font-semibold",
+        isDisabled && "text-muted-foreground",
+        isDestroy && "text-destructive",
+        isFocused && !isDestroy && "bg-accent text-accent-foreground",
+        isFocused && isDestroy && "bg-destructive text-destructive-foreground",
+        className,
+      )}
+      ref={ref}
+    >
       {item.rendered}
     </li>
   );

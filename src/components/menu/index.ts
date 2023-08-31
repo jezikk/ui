@@ -1,7 +1,6 @@
-import { Item } from "react-stately";
+import { Item, Section } from "react-stately";
 
-export { Item as MenuItem };
+export { Item as MenuItem, Section as MenuSection };
 export * from "./menu";
-export * from "./menu-section";
 export * from "./menu-trigger";
 export * from "./menu-provider";

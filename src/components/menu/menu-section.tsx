@@ -1,6 +1,6 @@
 import { AriaMenuSectionProps, useMenuSection, useSeparator } from "react-aria";
 import { Node, TreeState } from "react-stately";
-import { MenuItem } from ".";
+import { MenuItem } from "./menu-item";
 
 interface MenuSectionProps extends AriaMenuSectionProps {
   className?: string;
@@ -17,16 +17,14 @@ export function MenuSection({ section, state, ...props }: MenuSectionProps) {
   return (
     <>
       {section.key !== state.collection.getFirstKey() && (
-        <li {...separatorProps} />
+        <li {...separatorProps} className="my-1 border-b border-b-border" />
       )}
       <li {...itemProps}>
         {section.rendered && <span {...headingProps}>{section.rendered}</span>}
         <ul {...groupProps}>
-          {[...(state.collection.getChildren?.(section.key) ?? [])].map(
-            (node) => (
-              <MenuItem key={node.key} item={node} state={state} />
-            ),
-          )}
+          {[...section.childNodes].map((node) => (
+            <MenuItem key={node.key} item={node} state={state} />
+          ))}
         </ul>
       </li>
     </>

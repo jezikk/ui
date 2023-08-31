@@ -1,4 +1,9 @@
-import { EnvelopeIcon } from "@heroicons/react/20/solid";
+import {
+  ArrowRightOnRectangleIcon,
+  Cog8ToothIcon,
+  EnvelopeIcon,
+  PencilSquareIcon,
+} from "@heroicons/react/20/solid";
 import { Button } from "./components/button";
 import { Card, CardContent, CardHeader } from "./components/card";
 import { Heading } from "./components/heading";
@@ -16,7 +21,7 @@ import { Toggle, ToggleGroupField } from "./components/toggle-group-field";
 import { Dialog, DialogConfirm, DialogTrigger } from "./components/dialog";
 import { Modal } from "./components/modal";
 import { SwitchField } from "./components/switch-field";
-import { Menu, MenuItem, MenuTrigger } from "./components/menu";
+import { Menu, MenuItem, MenuSection, MenuTrigger } from "./components/menu";
 import { Popover } from "./components/popover";
 
 export function Demo() {
@@ -416,16 +421,29 @@ export function Demo() {
 
             <TabPanel id="menu" className="space-y-8">
               <div>
-                <Heading variant="h3">Information dialog</Heading>
+                <Heading variant="h3">Menu</Heading>
                 <div className="mt-4 flex w-full items-start gap-8">
                   <MenuTrigger>
                     <Button>Menu</Button>
                     <Popover>
-                      <Menu aria-label="Items">
-                        <MenuItem key={1}>Item 1</MenuItem>
-                        <MenuItem key={2}>Item 2</MenuItem>
-                        <MenuItem key={3}>Item 3</MenuItem>
-                        <MenuItem key={4}>Item 4</MenuItem>
+                      <Menu
+                        aria-label="Actions"
+                        onAction={(key) => console.log(key)}
+                      >
+                        <MenuItem key="edit" textValue="Edit">
+                          <PencilSquareIcon className="h-4 w-4" />
+                          <span>Edit</span>
+                        </MenuItem>
+                        <MenuItem key="settings" textValue="Settings">
+                          <Cog8ToothIcon className="h-4 w-4" />
+                          <span>Settings</span>
+                        </MenuItem>
+                        <MenuSection>
+                          <MenuItem key="destroy_logout" textValue="Log out">
+                            <ArrowRightOnRectangleIcon className="h-4 w-4" />
+                            <span>Log out</span>
+                          </MenuItem>
+                        </MenuSection>
                       </Menu>
                     </Popover>
                   </MenuTrigger>

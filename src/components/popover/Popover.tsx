@@ -66,7 +66,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
                 animate="show"
                 exit="hide"
                 className={cn(
-                  '"overflow-hidden shadow-md" rounded-md border border-border bg-background text-foreground',
+                  "overflow-hidden rounded-md border border-border bg-background text-foreground shadow-md",
                   className,
                 )}
               >
