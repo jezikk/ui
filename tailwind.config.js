@@ -9,6 +9,7 @@ export default {
       colors: {
         border: "hsl(var(--color-border))",
         ring: "hsl(var(--color-ring))",
+        required: "hsl(var(--color-required))",
         background: "hsl(var(--color-background))",
         foreground: "hsl(var(--color-foreground))",
         primary: {
@@ -49,8 +50,8 @@ export default {
         warning: colors.yellow,
       },
       aria: {
-        invalid: 'invalid="true"'
-      }
+        invalid: 'invalid="true"',
+      },
     },
   },
   plugins: [],

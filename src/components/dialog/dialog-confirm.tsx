@@ -55,9 +55,7 @@ export const DialogConfirm = React.forwardRef<
           <Button variant="outline" onPress={() => state.close()}>
             Close
           </Button>
-          <Button variant="default" onPress={confirm}>
-            {confirmButton}
-          </Button>
+          <Button onPress={confirm}>{confirmButton}</Button>
         </div>
       </Dialog>
     );

@@ -9,7 +9,7 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
 export function ErrorMessage({ className, ...props }: Props) {
   if (!props.children) return null;
   return (
-    <span {...props} className={cn("text-sm text-error-600", className)}>
+    <span {...props} className={cn("text-sm text-destructive", className)}>
       {props.children}
     </span>
   );

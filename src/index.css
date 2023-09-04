@@ -4,29 +4,29 @@
 
 @layer base {
   :root {
-    /* Colors */
+    /* Primitives */
     --color-background: 0 0% 100%;
     --color-foreground: 222.2 47.4% 11.2%;
 
     --color-muted: 210 40% 96.1%;
     --color-muted-foreground: 215.4 16.3% 46.9%;
 
-    --color-primary: 201 96% 32%; /* 700 */
+    --color-primary: 201 96% 32%;
     --color-primary-foreground: 0 0% 100%;
 
-    --color-secondary: 215 25% 27%; /* 700 */
-    --color-secondary-foreground: 0 0% 100%;
+    --color-secondary: 210 40% 96.1%;
+    --color-secondary-foreground: 222.2 47.4% 11.2%;
 
     --color-accent: 210 40% 96.1%;
     --color-accent-foreground: 222.2 47.4% 11.2%;
 
-    --color-destructive: 0 100% 50%;
-    --color-destructive-foreground: 210 40% 98%;
+    --color-destructive: 0 72% 51%;
+    --color-destructive-foreground: 0 86% 97%;
 
     --color-border: 214.3 31.8% 91.4%;
     --color-ring: 201 94% 86%;
 
-    /* Components */
+    /* Tokens */
     --color-input: var(--color-background);
     --color-input-foreground: var(--color-foreground);
     --color-input-placeholder: var(--color-muted-foreground);
