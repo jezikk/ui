@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DescriptionMessage } from "./description-message";
 
 const meta: Meta<typeof DescriptionMessage> = {
-  title: "Primitives/Fields/Description",
+  title: "Form/Description",
   component: DescriptionMessage,
   parameters: { layout: "centered" },
   tags: ["autodocs"],
