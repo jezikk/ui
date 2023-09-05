@@ -199,36 +199,60 @@ export function Demo() {
                     label="Valid"
                     isRequired={true}
                     defaultValue={1000}
-                    formatOptions={{ style: "currency", currency: "CZK" }}
                     description="Description message"
                     className="w-full"
-                  />
+                    formatOptions={{ style: "currency", currency: "CZK" }}
+                  >
+                    <Label>Valid</Label>
+                    <Input />
+                    <Description />
+                    <ErrorMessage />
+                  </NumberField>
 
                   <NumberField
                     label="Invalid"
                     placeholder="Placeholder"
-                    formatOptions={{ style: "currency", currency: "CZK" }}
                     validationState="invalid"
                     description="Description message"
                     errorMessage="Error message"
                     className="w-full"
-                  />
+                    formatOptions={{ style: "currency", currency: "CZK" }}
+                  >
+                    <Label />
+                    <Input />
+                    <Description />
+                    <ErrorMessage />
+                  </NumberField>
 
                   <NumberField
                     label="Disabled"
                     isDisabled={true}
                     defaultValue={1000}
-                    formatOptions={{ style: "currency", currency: "CZK" }}
+                    placeholder="Placeholder"
+                    description="Description message"
                     className="w-full"
-                  />
+                    formatOptions={{ style: "currency", currency: "CZK" }}
+                  >
+                    <Label />
+                    <Input />
+                    <Description />
+                    <ErrorMessage />
+                  </NumberField>
 
                   <NumberField
                     label="Readonly"
                     isReadOnly={true}
                     defaultValue={1000}
-                    formatOptions={{ style: "currency", currency: "CZK" }}
+                    placeholder="Placeholder"
+                    description="Description message"
                     className="w-full"
-                  />
+                    formatOptions={{ style: "currency", currency: "CZK" }}
+                  >
+                    <Label />
+                    <Input />
+                    <Description />
+                    <ErrorMessage />
+                  </NumberField>
                 </div>
               </div>
 
