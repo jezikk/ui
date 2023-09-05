@@ -17,7 +17,11 @@ import {
 import { Tab, TabList, TabPanel, Tabs } from "./components/tabs";
 import { TextField } from "./components/text-field";
 import { Link } from "./components/link";
-import { Toggle, ToggleGroupField } from "./components/toggle-group-field";
+import {
+  Toggle,
+  ToggleGroup,
+  ToggleGroupField,
+} from "./components/toggle-group-field";
 import { Dialog, DialogConfirm, DialogTrigger } from "./components/dialog";
 import { Modal } from "./components/modal";
 import { SwitchField } from "./components/switch-field";
@@ -377,9 +381,14 @@ export function Demo() {
                     defaultValue="red"
                     className="w-full"
                   >
-                    <Toggle value="red">Red</Toggle>
-                    <Toggle value="green">Green</Toggle>
-                    <Toggle value="blue">Blue</Toggle>
+                    <Label />
+                    <ToggleGroup>
+                      <Toggle value="red">Red</Toggle>
+                      <Toggle value="green">Green</Toggle>
+                      <Toggle value="blue">Blue</Toggle>
+                    </ToggleGroup>
+                    <Description />
+                    <ErrorMessage />
                   </ToggleGroupField>
 
                   <ToggleGroupField
@@ -389,9 +398,14 @@ export function Demo() {
                     errorMessage="Error message"
                     className="w-full"
                   >
-                    <Toggle value="red">Red</Toggle>
-                    <Toggle value="green">Green</Toggle>
-                    <Toggle value="blue">Blue</Toggle>
+                    <Label />
+                    <ToggleGroup>
+                      <Toggle value="red">Red</Toggle>
+                      <Toggle value="green">Green</Toggle>
+                      <Toggle value="blue">Blue</Toggle>
+                    </ToggleGroup>
+                    <Description />
+                    <ErrorMessage />
                   </ToggleGroupField>
 
                   <ToggleGroupField
@@ -400,9 +414,14 @@ export function Demo() {
                     defaultValue="red"
                     className="w-full"
                   >
-                    <Toggle value="red">Red</Toggle>
-                    <Toggle value="green">Green</Toggle>
-                    <Toggle value="blue">Blue</Toggle>
+                    <Label />
+                    <ToggleGroup>
+                      <Toggle value="red">Red</Toggle>
+                      <Toggle value="green">Green</Toggle>
+                      <Toggle value="blue">Blue</Toggle>
+                    </ToggleGroup>
+                    <Description />
+                    <ErrorMessage />
                   </ToggleGroupField>
 
                   <ToggleGroupField
@@ -411,9 +430,14 @@ export function Demo() {
                     defaultValue="green"
                     className="w-full"
                   >
-                    <Toggle value="red">Red</Toggle>
-                    <Toggle value="green">Green</Toggle>
-                    <Toggle value="blue">Blue</Toggle>
+                    <Label />
+                    <ToggleGroup>
+                      <Toggle value="red">Red</Toggle>
+                      <Toggle value="green">Green</Toggle>
+                      <Toggle value="blue">Blue</Toggle>
+                    </ToggleGroup>
+                    <Description />
+                    <ErrorMessage />
                   </ToggleGroupField>
                 </div>
               </div>

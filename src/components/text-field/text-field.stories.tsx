@@ -7,7 +7,7 @@ import { Description } from "../description";
 import { ErrorMessage } from "../error-message";
 
 const meta: Meta<typeof TextField> = {
-  title: "Form/TextField ",
+  title: "Form/TextField",
   component: TextField,
   parameters: { layout: "centered" },
   tags: ["autodocs"],
@@ -114,22 +114,6 @@ export const Disabled: Story = {
       label={args.label}
       placeholder={args.placeholder}
       defaultValue={args.defaultValue}
-      description={args.description}
-    >
-      <Label />
-      <Input />
-      <Description />
-      <ErrorMessage />
-    </TextField>
-  ),
-};
-
-export const DisabledEmpty: Story = {
-  render: (args) => (
-    <TextField
-      isDisabled={true}
-      label={args.label}
-      placeholder={args.placeholder}
       description={args.description}
     >
       <Label />

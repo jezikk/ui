@@ -7,7 +7,7 @@ import { Description } from "../description";
 import { ErrorMessage } from "../error-message";
 
 const meta: Meta<typeof NumberField> = {
-  title: "Form/NumberField ",
+  title: "Form/NumberField",
   component: NumberField,
   parameters: { layout: "centered" },
   tags: ["autodocs"],
@@ -120,23 +120,6 @@ export const Disabled: Story = {
       label={args.label}
       placeholder={args.placeholder}
       defaultValue={args.defaultValue}
-      description={args.description}
-      formatOptions={args.formatOptions}
-    >
-      <Label />
-      <Input />
-      <Description />
-      <ErrorMessage />
-    </NumberField>
-  ),
-};
-
-export const DisabledEmpty: Story = {
-  render: (args) => (
-    <NumberField
-      isDisabled={true}
-      label={args.label}
-      placeholder={args.placeholder}
       description={args.description}
       formatOptions={args.formatOptions}
     >

@@ -1,29 +1,33 @@
-import { useObjectRef } from "@react-aria/utils";
+import { useContextProps } from "@/hooks/use-context-props";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import React from "react";
 import {
   AriaRadioProps,
   VisuallyHidden,
-  useRadio,
   mergeProps,
   useFocusRing,
+  useRadio,
 } from "react-aria";
-import { useToggleGroup } from "./toggle-group-context";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { ToggleContext } from "./toggle-provider";
 
 interface ToggleProps extends AriaRadioProps {}
 
 export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
   (props, forwardedRef) => {
-    const ref = useObjectRef(forwardedRef);
-    const { state, isError, isReadOnly, id } = useToggleGroup();
-    const { inputProps, isSelected, isDisabled } = useRadio(props, state, ref);
+    const [{ state, isError, isReadOnly, id, ...ctxProps }, ref] =
+      useContextProps(props, forwardedRef, ToggleContext);
+    const { inputProps, isSelected, isDisabled } = useRadio(
+      { ...ctxProps, value: ctxProps.value ?? "" },
+      state,
+      ref,
+    );
     const { isFocusVisible, focusProps } = useFocusRing();
 
     return (
       <label
         className={cn(
-          "relative flex w-full cursor-pointer items-center justify-center rounded-md border border-transparent",
+          "relative flex w-full cursor-pointer items-center justify-center rounded-md border border-transparent px-2",
           isSelected && "text-input-foreground",
           isError && isSelected && "text-error-900",
           isDisabled && "cursor-default text-muted-foreground",
