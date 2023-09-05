@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { DescriptionMessage } from "./description-message";
+import { Description } from "./description";
 
-const meta: Meta<typeof DescriptionMessage> = {
+const meta: Meta<typeof Description> = {
   title: "Form/Description",
-  component: DescriptionMessage,
+  component: Description,
   parameters: { layout: "centered" },
   tags: ["autodocs"],
 };

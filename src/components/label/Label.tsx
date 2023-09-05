@@ -1,33 +1,42 @@
-import { tv, VariantProps } from "tailwind-variants";
-import { HTMLAttributes } from "react";
+import React, { LabelHTMLAttributes } from "react";
+import { cn } from "@/lib/utils";
+import { useContextProps } from "@/hooks/use-context-props";
+import { LabelContext } from "./label-provider";
 
-const labelVariants = tv({
-  base: "block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-});
-
-interface LabelProps
-  extends HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof labelVariants> {
+interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   className?: string;
   isRequired?: boolean;
+  isError?: boolean;
   children?: React.ReactNode;
 }
 
-export function Label({
-  className,
-  isRequired,
-  children,
-  ...props
-}: LabelProps) {
-  if (!children) return null;
-  return (
-    <label {...props} className={labelVariants({ className })}>
-      {children}
-      {isRequired && (
-        <span className="ml-0.5 text-destructive" aria-hidden={true}>
-          *
-        </span>
-      )}
-    </label>
-  );
-}
+export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
+  ({ className, children, ...props }, forwardedRef) => {
+    const [{ isError, isRequired, label, ...ctxProps }, ref] = useContextProps(
+      props,
+      forwardedRef,
+      LabelContext,
+    );
+    if (!label && !children) return null;
+    return (
+      <label
+        {...ctxProps}
+        ref={ref}
+        data-invalid={isError ? true : undefined}
+        className={cn(
+          "block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+          className,
+        )}
+      >
+        {children ?? label}
+        {isRequired && (
+          <span className="ml-0.5 text-destructive" aria-hidden={true}>
+            *
+          </span>
+        )}
+      </label>
+    );
+  },
+);
+
+Label.displayName = "Label";

@@ -10,7 +10,7 @@ import {
   useKeyboard,
   AriaFieldProps,
 } from "react-aria";
-import { DescriptionMessage } from "../description-message";
+import { Description } from "../description";
 import { ErrorMessage } from "../error-message";
 import { Label } from "../label";
 import { Popover } from "../popover";
@@ -189,7 +189,7 @@ function MultiSelectField<TItem extends object>(
         </ListBox>
       </Popover>
 
-      <DescriptionMessage
+      <Description
         {...descriptionProps}
         isHidden={
           props.validationState === "invalid" ||
@@ -198,7 +198,7 @@ function MultiSelectField<TItem extends object>(
         }
       >
         {props.description}
-      </DescriptionMessage>
+      </Description>
 
       <ErrorMessage {...errorMessageProps} className="mt-2">
         {props.errorMessage}

@@ -23,6 +23,10 @@ import { Modal } from "./components/modal";
 import { SwitchField } from "./components/switch-field";
 import { Menu, MenuItem, MenuSection, MenuTrigger } from "./components/menu";
 import { Popover } from "./components/popover";
+import { Label } from "./components/label";
+import { Input } from "./components/input";
+import { Description } from "./components/description";
+import { ErrorMessage } from "./components/error-message";
 
 export function Demo() {
   return (
@@ -136,7 +140,12 @@ export function Demo() {
                     defaultValue="Hodnota"
                     description="Description message"
                     className="w-full"
-                  />
+                  >
+                    <Label>Valid</Label>
+                    <Input />
+                    <Description />
+                    <ErrorMessage />
+                  </TextField>
 
                   <TextField
                     label="Invalid"
@@ -145,21 +154,40 @@ export function Demo() {
                     description="Description message"
                     errorMessage="Error message"
                     className="w-full"
-                  />
+                  >
+                    <Label />
+                    <Input />
+                    <Description />
+                    <ErrorMessage />
+                  </TextField>
 
                   <TextField
                     label="Disabled"
                     isDisabled={true}
                     defaultValue="Hodnota"
+                    placeholder="Placeholder"
+                    description="Description message"
                     className="w-full"
-                  />
+                  >
+                    <Label />
+                    <Input />
+                    <Description />
+                    <ErrorMessage />
+                  </TextField>
 
                   <TextField
                     label="Readonly"
                     isReadOnly={true}
                     defaultValue="Hodnota"
+                    placeholder="Placeholder"
+                    description="Description message"
                     className="w-full"
-                  />
+                  >
+                    <Label />
+                    <Input />
+                    <Description />
+                    <ErrorMessage />
+                  </TextField>
                 </div>
               </div>
 

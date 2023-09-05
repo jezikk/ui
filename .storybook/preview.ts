@@ -3,13 +3,13 @@ import "../src/index.css";
 
 const preview: Preview = {
   parameters: {
-    options: {
-      storySort: {
-        method: "alphabetical",
-        includeNames: true,
-        locales: "en-US",
-      },
-    },
+    // options: {
+    //   storySort: {
+    //     method: "alphabetical",
+    //     includeNames: true,
+    //     locales: "en-US",
+    //   },
+    // },
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {

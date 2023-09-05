@@ -1,6 +1,6 @@
 import React from "react";
 import { Label } from "../label";
-import { DescriptionMessage } from "../description-message";
+import { Description } from "../description";
 import { ErrorMessage } from "../error-message";
 import { AriaNumberFieldProps, useLocale, useNumberField } from "react-aria";
 import { NumberFieldStateOptions, useNumberFieldState } from "react-stately";
@@ -32,7 +32,7 @@ export const NumberField = React.forwardRef<HTMLInputElement, NumberFieldProps>(
           className="flex h-9 w-full rounded-md border border-input-border bg-input px-3 py-1 text-sm text-input-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus:border-input-border-accent focus:outline-none focus:ring-2 focus:ring-input-ring disabled:opacity-50 aria-invalid:border-error-300 aria-invalid:text-error-900 aria-invalid:placeholder:text-error-300 aria-invalid:focus:border-error-500 aria-invalid:focus:ring-error-200"
         />
 
-        <DescriptionMessage
+        <Description
           {...descriptionProps}
           isHidden={
             props.validationState === "invalid" ||
@@ -42,7 +42,7 @@ export const NumberField = React.forwardRef<HTMLInputElement, NumberFieldProps>(
           className="mt-2"
         >
           {props.description}
-        </DescriptionMessage>
+        </Description>
 
         <ErrorMessage {...errorMessageProps} className="mt-2">
           {props.errorMessage}

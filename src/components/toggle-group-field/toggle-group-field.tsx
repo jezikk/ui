@@ -2,7 +2,7 @@ import React from "react";
 import { AriaRadioGroupProps, useRadioGroup } from "react-aria";
 import { useRadioGroupState } from "react-stately";
 import { Label } from "../label";
-import { DescriptionMessage } from "../description-message";
+import { Description } from "../description";
 import { ErrorMessage } from "../error-message";
 import { cn } from "@/lib/utils";
 import { ToggleGroupContext } from "./toggle-group-context";
@@ -48,7 +48,7 @@ export const ToggleGroupField = React.forwardRef<
         </ToggleGroupContext.Provider>
       </div>
 
-      <DescriptionMessage
+      <Description
         {...descriptionProps}
         isHidden={
           props.validationState === "invalid" ||
@@ -58,7 +58,7 @@ export const ToggleGroupField = React.forwardRef<
         className="mt-2"
       >
         {props.description}
-      </DescriptionMessage>
+      </Description>
 
       <ErrorMessage {...errorMessageProps} className="mt-2">
         {props.errorMessage}

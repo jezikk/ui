@@ -10,7 +10,7 @@ import {
 } from "react-aria";
 import { Item, SelectStateOptions, useSelectState } from "react-stately";
 import { UnstyledButton } from "../button";
-import { DescriptionMessage } from "../description-message";
+import { Description } from "../description";
 import { ErrorMessage } from "../error-message";
 import { Label } from "../label";
 import { Popover } from "../popover";
@@ -118,13 +118,13 @@ function SelectField<TItem extends object>(
         </ListBox>
       </Popover>
 
-      <DescriptionMessage
+      <Description
         {...descriptionProps}
         isHidden={isError || props.isDisabled || props.isReadOnly}
         className="mt-2"
       >
         {props.description}
-      </DescriptionMessage>
+      </Description>
 
       <ErrorMessage {...errorMessageProps} className="mt-2">
         {props.errorMessage}
